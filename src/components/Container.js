@@ -24,7 +24,7 @@ Array.prototype.equals = function (array) {
         }           
         else if (this[i] != array[i]) { 
             // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;   
+            return false;
         }           
     }       
     return true;

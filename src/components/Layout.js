@@ -81,6 +81,7 @@ class LayoutMain extends React.Component {
             transform: translateX(0);
             transition: 0.5s ease transform, 0.5s ease opacity;
             opacity: 1;
+            border-left: 1px solid ${theme('dark-faded-7')};
 
             [data-loading="true"] & {
                 transform: translateX(100%) !important;
@@ -312,6 +313,24 @@ class LayoutSider extends React.Component {
             height: 100%;
             top: 0;
             left: 0;
+            transition: 0.3s ease width;
+            
+
+            [data-sider-state='collapsed'] & {
+                transition-delay: 0.3s;
+            }
+
+            [data-sider-state='collapsed'] &,
+            [data-sider-state='expanded'] &,
+            [data-sider-state='expanded-wide'] &,
+            [data-max~="1100"] [data-sider-state='normal'] & {
+                width: ${theme('sider-width-collapsed')};
+            }
+
+            [data-max~="480"] [data-sider-state='normal'] &,
+            [data-max~="480"] [data-sider-state='collapsed'] & {
+                width: ${theme('sider-width')};
+            }
 
             [data-max~="480"] [data-sider-state='expanded'][data-sider-hidden='false'] & {
                 display: none;
@@ -325,10 +344,12 @@ class LayoutSider extends React.Component {
             top: 0;
             background-color: ${theme('light-color')};
             z-index: 2;
-            transition: 0.3s ease width, 0.3s ease left, 0.3s ease right;
+            transition: 0.3s ease width, 0.3s ease left, 0.3s ease right, 0.3s ease opacity;
+            border-left: 1px solid ${theme('dark-faded-6')};
 
             [data-sider-state='normal'] & {
                 left: ${theme('sider-width')};
+                opacity: 0;
 
                 &::after {
                     opacity: 0;
@@ -338,6 +359,7 @@ class LayoutSider extends React.Component {
             [data-sider-state='expanded-wide'] & {
                 left: ${theme('sider-width-collapsed')};
                 width: ${theme('num-sider-width') + 100}px;
+                opacity: 1;
 
                 &::after {
                     opacity: 0.025;
@@ -346,10 +368,15 @@ class LayoutSider extends React.Component {
 
             [data-sider-state='collapsed'] & {
                 left: ${theme('sider-width-collapsed')};
+                opacity: 0;
 
                 &::after {
                     opacity: 0;
                 }
+            }
+
+            [data-max~="1100"] [data-sider-state='normal'] & {
+                left: calc(-${theme('sider-width')} - ${theme('sider-width-collapsed')});
             }
 
             [data-min~="1100"] [data-sider-state='expanded'] & {
@@ -362,6 +389,7 @@ class LayoutSider extends React.Component {
 
             [data-max~="1100"] [data-sider-state='expanded'] & {
                 left: ${theme('sider-width-collapsed')};
+                opacity: 1;
 
                 &::after, &::before {
                     opacity: 0.025;
@@ -372,6 +400,7 @@ class LayoutSider extends React.Component {
                 width: ${theme('sider-width')};
                 right: ${theme('sider-width')};
                 left: auto;
+                opacity: 1;
 
                 &::after, &::before {
                     opacity: 0;
@@ -443,11 +472,13 @@ class LayoutWrapper extends React.Component {
             isLoading: false,
             siderState: 'normal',
             siderHiddenMobile: true,
+            onBreakpointChange: [],
             breakpoints: [
                 {max: 480},
                 {max: 1100},
                 {min: 1100}
-            ]
+            ],
+            currentSize: null
         }
 
         if (props.siderState === 'collapsed' || 
@@ -490,6 +521,65 @@ class LayoutWrapper extends React.Component {
         this.setState({isLoading: false});
     }
 
+    addBreakpointListener = (callback) => {
+        let listeners = this.state.onBreakpointChange;
+        listeners.push(callback);
+        this.setState({onBreakpointChange: listeners});
+    }
+
+    removeBreakpointListener = (callback) => {
+        let listeners = this.state.onBreakpointChange;
+        listeners.forEach(function(listener, i) {
+            if (listener === callback) {
+                listeners.splice(i, 1);
+            }
+        });
+        this.setState({onBreakpointChange: listeners});
+    }
+
+    handleBreakpointChanges = (breakpoints) => {
+        let hasMobile = false;
+        let hasTablet = false
+        let hasDesktop = false;
+
+        breakpoints.max.forEach(function(bp) {
+            if (bp === 1100) {
+                hasTablet = true
+            }
+
+            if (bp === 480) {
+                hasMobile = true
+            }
+        });
+
+        breakpoints.min.forEach(function(bp) {
+            if (bp === 1100) {
+                hasDesktop = true
+            }
+        });
+
+        if (hasDesktop) {
+            this.setState({currentSize: 'desktop'});
+        } else if (hasTablet && hasMobile) {
+            this.setState({currentSize: 'mobile'});
+        } else if (hasTablet) {
+            this.setState({currentSize: 'tablet'});
+        }
+
+        if (this.props.onBreakpointChange) {
+            this.props.onBreakpointChange(breakpoints);
+        }
+        if (this.state.onBreakpointChange) {
+            this.state.onBreakpointChange.forEach(function(callback) {
+                callback(breakpoints);
+            })
+        }
+    }
+
+    setLayoutState = (state) => {
+        // Need to do this;
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.isLoading === true) {
             this.setLoading()
@@ -518,8 +608,6 @@ class LayoutWrapper extends React.Component {
                 siderState: 'normal'
             })
         }
-
-        console.log(nextProps);
     }
 
     
@@ -575,13 +663,16 @@ class LayoutWrapper extends React.Component {
             showMobileSider: this.showMobileSider,
             setLoading: this.setLoading,
             unsetLoading: this.unsetLoading,
+            addBreakpointListener: this.addBreakpointListener,
+            removeBreakpointListener: this.removeBreakpointListener,
+            setLayoutState: this.setLayoutState,
             getState: function() {
                 return This.state
             }
         }
         
 		return (
-            <Container className={ContainerEl} noMaxWidth breakpoints={this.state.breakpoints}>
+            <Container className={ContainerEl} noMaxWidth breakpoints={this.state.breakpoints} onBreakpointChange={this.handleBreakpointChanges}>
                 <div className={"LayoutWrapper " + LayoutWrapper} data-loading={this.state.isLoading} data-sider-state={this.state.siderState} data-sider-hidden={this.state.siderHiddenMobile}>
                     <LayoutContext.Provider value={layoutApi}>
                         {this.props.children}
@@ -635,7 +726,7 @@ class Layout extends React.Component {
 
 
         return (
-            <LayoutWrapper isLoading={this.props.isLoading} siderState={this.props.siderState} siderHiddenMobile={this.props.siderHiddenMobile}>
+            <LayoutWrapper isLoading={this.props.isLoading} siderState={this.props.siderState} siderHiddenMobile={this.props.siderHiddenMobile} onBreakpointChange={this.props.onBreakpointChange}>
                 <LayoutSider
                     navigation={this.state.Nav}
                     subNavigation={this.state.SubNav}

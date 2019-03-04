@@ -23,7 +23,7 @@ class StorybookUI extends React.Component {
         if (this.props.type === 'resizable') {
             return (
                 <Padding size="lg">
-                    <ResizableBox axis="x" width={this.state.initialWidth - 70} minConstraints={[370, 100]}>
+                    <ResizableBox axis="x" width={this.state.initialWidth - 70}>
                         <Card>
                             {this.props.children}
                         </Card>
