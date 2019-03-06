@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
-import Padding from './Padding';
+import Padding from '../components/padding/padding';
 import 'react-resizable/css/styles.css';
 
 export interface IStorybookUI {
@@ -9,10 +9,7 @@ export interface IStorybookUI {
 }
 
 const StorybookUI: React.FC<IStorybookUI> = (props) => {
-  const {
-    children,
-    type,
-  } = props;
+  const { children, type } = props;
   const [_initialWidth, _setInitialWidth] = useState<number>(0);
   const [_initialHeight, _setInitialHeight] = useState<number>(0);
   useEffect(() => {
@@ -26,9 +23,7 @@ const StorybookUI: React.FC<IStorybookUI> = (props) => {
           axis='x'
           width={_initialWidth - 70}
           height={_initialHeight}>
-          <Card>
-            {children}
-          </Card>
+          <Card>{children}</Card>
         </ResizableBox>
       </Padding>
     );
@@ -41,9 +36,7 @@ const StorybookUI: React.FC<IStorybookUI> = (props) => {
   } else {
     return (
       <Padding size='lg'>
-        <Card>
-          {children}
-        </Card>
+        <Card>{children}</Card>
       </Padding>
     );
   }

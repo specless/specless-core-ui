@@ -2,9 +2,9 @@ import { css, Global } from '@emotion/core';
 import 'antd/dist/antd.less';
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
-import THEME_VARS from '../variables';
-import base from './Theme.base';
-import fonts from './Theme.fonts';
+import THEME_VARS from '../../variables';
+import base from '../../utils/theme.base';
+import fonts from '../../utils/theme.fonts';
 
 type THEME = typeof THEME_VARS;
 
@@ -18,7 +18,6 @@ export interface IThemeContext {
   _vars: THEME;
 }
 
-
 export const ThemeContext = React.createContext<IThemeContext>({
   get: _.noop,
   set: _.noop,
@@ -26,14 +25,10 @@ export const ThemeContext = React.createContext<IThemeContext>({
 });
 
 export const Theme: React.FunctionComponent<IThemeProps> = (props) => {
-  const {
-    data,
-    children,
-  } = props;
+  const { data, children } = props;
   const [_themeData, _setThemeData] = useState<THEME>(data || THEME_VARS);
   const _getVar = (key: string) => {
     return _.get(key, _themeData) as any;
-
   };
   const _setVar = (key: string, value: any) => {
     const _theme = _.set(key, value, _themeData) as THEME;
@@ -51,7 +46,7 @@ export const Theme: React.FunctionComponent<IThemeProps> = (props) => {
 
   return (
     <ThemeContext.Provider value={_themeAPI}>
-      <Global styles={_style}/>
+      <Global styles={_style} />
       {children}
     </ThemeContext.Provider>
   );

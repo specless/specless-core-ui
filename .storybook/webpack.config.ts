@@ -1,8 +1,8 @@
 import variables from '../src/variables';
 
-module.exports = (baseConfig: any, env: any, defaultConfig: any) => {
-  // Extend defaultConfig as you need.
-  /*defaultConfig.module.rules.push({
+const _config = ({ config, mode }: any) => {
+  // Extend config as you need.
+  config.module.rules.push({
     loader: 'babel-loader',
     exclude: /node_modules/,
     test: /\.js$/,
@@ -10,11 +10,11 @@ module.exports = (baseConfig: any, env: any, defaultConfig: any) => {
       presets: ['@babel/react'],
       plugins: [
         ['import', { libraryName: 'antd', style: true }],
-        ['transform-class-properties', { 'spec': true }],
+        ['transform-class-properties', { spec: true }],
       ],
     },
-  });*/
-  defaultConfig.module.rules.push({
+  });
+  config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
       {
@@ -23,7 +23,7 @@ module.exports = (baseConfig: any, env: any, defaultConfig: any) => {
     ],
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.less$/,
     loaders: [
       'style-loader',
@@ -38,6 +38,8 @@ module.exports = (baseConfig: any, env: any, defaultConfig: any) => {
     ],
   });
 
-  defaultConfig.resolve.extensions.push('.ts', '.tsx');
-  return defaultConfig;
+  config.resolve.extensions.push('.ts', '.tsx');
+  return config;
 };
+
+export default _config;
