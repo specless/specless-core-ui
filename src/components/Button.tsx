@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core';
+import { css } from '@emotion/core';
 import { Button as AntButton } from 'antd';
 import { ButtonProps as AntButtonProps } from 'antd/lib/button/button';
 import React, { useContext } from 'react';
