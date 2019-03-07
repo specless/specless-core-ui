@@ -46,9 +46,9 @@ _.forEach((icon: string) => {
   icons[icon] = icon;
 }, variables.icons);
 
-storiesOf('General', module)
+storiesOf('General/Icon', module)
   .addDecorator((story) => <StorybookUI>{story()}</StorybookUI>)
-  .add('Icon', () => (
+  .add('Single', () => (
     <Icon
       type={select('type', icons, 'setting')}
       color={select('color', colors, 'inherit')}
@@ -65,11 +65,8 @@ storiesOf('General', module)
         } as any
       )}
     />
-  ));
-
-storiesOf('General', module)
-  .addDecorator((story) => <StorybookUI>{story()}</StorybookUI>)
-  .add('Icons (All)', () => (
+  ))
+  .add('Reference (All Icons)', () => (
     <div>
       {_.map((item: string) => {
         return (
