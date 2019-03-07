@@ -6,6 +6,7 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "antd": "^3.13.6",
+    "classnames": "^2.2.6",
     "color": "^3.1.0",
     "css-element-queries": "^1.1.1",
     "customize-cra": "^0.2.11",
@@ -19,7 +20,8 @@
     "react-resizable": "^1.7.5",
     "react-scripts": "2.1.5",
     "react-transition-group": "^2.6.0",
-    "reqwest": "^2.0.5"
+    "reqwest": "^2.0.5",
+    "shades": "^2.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -45,6 +47,7 @@
     "@storybook/addon-links": "^5.0.0",
     "@storybook/addon-viewport": "^5.0.0",
     "@storybook/react": "^5.0.0",
+    "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.9",
     "@types/lodash": "^4.14.122",
     "@types/node": "^11.10.5",
