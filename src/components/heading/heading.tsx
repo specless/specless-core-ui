@@ -8,7 +8,7 @@ export interface IHeading {
   level?: number;
 }
 
-const _headingStyles = {
+export const HEADING_STYLES = {
   h1: '',
   h2: '',
   h3: '',
@@ -22,7 +22,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
-  _headingStyles.h1 = `
+  HEADING_STYLES.h1 = `
 			font-size: ${_theme('h1-font-size')};
 			margin-bottom: 1em;
 			position: relative;
@@ -56,7 +56,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
 			}
 		`;
 
-  _headingStyles.h2 = `
+  HEADING_STYLES.h2 = `
 			font-size: ${_theme('h2-font-size')};
 			margin-bottom: 1em;
 			position: relative;
@@ -90,7 +90,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
 			}
 		`;
 
-  _headingStyles.h3 = `
+  HEADING_STYLES.h3 = `
 			font-size: ${_theme('h3-font-size')};
 			color: ${_theme('text-color')};
 			margin-top: 0.75em;
@@ -98,14 +98,14 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
             font-family: ${_theme('font-family')};
 		`;
 
-  _headingStyles.h4 = `
+  HEADING_STYLES.h4 = `
 			font-size: ${_theme('h4-font-size')};
 			margin-top: 0.75em;
             margin-bottom: 1em;
             font-family: ${_theme('font-family')};
 		`;
 
-  _headingStyles.h5 = `
+  HEADING_STYLES.h5 = `
 			font-size: ${_theme('h5-font-size')};
 			font-weight: 800;
 			margin-top: 0.75em;
@@ -114,7 +114,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
             font-family: ${_theme('font-family')};
 		`;
 
-  _headingStyles.h6 = `
+  HEADING_STYLES.h6 = `
 			font-size: ${_theme('label-font-size')};
 			font-weight: ${_theme('label-font-weight')};
 			letter-spacing: ${_theme('label-letter-spacing')};
@@ -129,7 +129,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
   switch (level) {
     case 1:
       _styles = css`
-        ${_headingStyles.h1};
+        ${HEADING_STYLES.h1};
       `;
       return (
         <h1 className='Heading' css={_styles}>
@@ -138,7 +138,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
       );
     case 3:
       _styles = css`
-        ${_headingStyles.h2};
+        ${HEADING_STYLES.h2};
       `;
       return (
         <h3 className='Heading' css={_styles}>
@@ -147,7 +147,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
       );
     case 4:
       _styles = css`
-        ${_headingStyles.h3};
+        ${HEADING_STYLES.h3};
       `;
       return (
         <h4 className='Heading' css={_styles}>
@@ -156,7 +156,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
       );
     case 5:
       _styles = css`
-        ${_headingStyles.h4};
+        ${HEADING_STYLES.h4};
       `;
       return (
         <h5 className='Heading' css={_styles}>
@@ -165,7 +165,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
       );
     case 6:
       _styles = css`
-        ${_headingStyles.h5};
+        ${HEADING_STYLES.h5};
       `;
       return (
         <h6 className='Heading' css={_styles}>
@@ -174,7 +174,7 @@ export const Heading: React.FunctionComponent<IHeading> = (props) => {
       );
     default:
       _styles = css`
-        ${_headingStyles.h6};
+        ${HEADING_STYLES.h6};
       `;
       return (
         <h2 className='Heading' css={_styles}>
