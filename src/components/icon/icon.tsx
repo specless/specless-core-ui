@@ -1,18 +1,20 @@
+/** @jsx jsx */
 import React, { useContext } from 'react';
-import { css } from '@emotion/core';
+import cn from 'classnames';
+import { css, jsx } from '@emotion/core';
 import { Icon as AntIcon } from 'antd';
-import { IconProps as AntIconProps } from 'antd/lib/icon';
+import { IconProps as AntIconProps, ThemeType } from 'antd/lib/icon';
 import { ThemeContext } from '../theme/theme';
 import * as Shades from 'shades';
 
 export interface IIcon {
   color?: string;
-  iconTheme?: string;
+  iconTheme?: ThemeType;
   size?: string;
 }
 
 const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
-  const { color, iconTheme, size, children } = props;
+  const { color, size, children, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
   const colors = {
@@ -88,7 +90,11 @@ const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
     }
   `;
   return (
-    <AntIcon className={`Icon ${color} ${iconTheme}`} css={_css} {...props}>
+    <AntIcon
+      className={cn('Icon', color)}
+      theme={props.iconTheme}
+      css={_css}
+      {...rest}>
       {children}
     </AntIcon>
   );

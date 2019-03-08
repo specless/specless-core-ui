@@ -98,6 +98,8 @@ const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
   );
 };
 
+LayoutSider.displayName = 'LayoutSider';
+
 export interface ISiderControlProps {
   type?: 'toggle' | 'show' | 'hide';
 }
@@ -135,5 +137,7 @@ export const SiderControl: React.FunctionComponent<
 SiderControl.defaultProps = {
   type: 'toggle',
 };
+
+SiderControl.displayName = 'SiderControl';
 
 export default LayoutSider;
