@@ -78,17 +78,17 @@ const Container: React.FunctionComponent<
   };
 
   useEffect(() => {
-    if (!_domRef || !_domRef.current) {
+    if (!_domRef.current) {
       return;
     }
     const _node = _domRef.current;
     if (_.isArray(breakpoints)) {
-      new ResizeSensor(_domRef, () => {
+      new ResizeSensor(_node, () => {
         _setActiveBreakpoints(breakpoints, _node);
       });
       _setActiveBreakpoints(breakpoints, _node);
     }
-  }, [_domRef]);
+  }, []);
 
   const _css = css`
     position: relative;

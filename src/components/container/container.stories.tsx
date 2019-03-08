@@ -10,7 +10,7 @@ import StorybookUI from '../../utils/storybook-ui';
 import Padding from '../padding/padding';
 import Container from './container';
 
-const exampleBreakpoints = [{ max: 500 }, { max: 900 }, { min: 200 }];
+const exampleBreakpoints = [{ max: 500 }, { max: 900 }, { min: 900 }];
 
 const exampleStyles = css`
   display: inline-block;
