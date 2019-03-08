@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
+import { IBreakpoint, IBreakpointsContainer } from '../../models/breakpoint';
 import { ThemeContext } from '../theme/theme';
 const ResizeSensor = require('css-element-queries/src/ResizeSensor');
 
@@ -11,16 +12,6 @@ export interface IContainerProps {
   noMaxWidth?: boolean;
   breakpoints?: IBreakpoint[];
   onBreakpointChange?: (breakpoints: IBreakpointsContainer) => unknown;
-}
-
-export interface IBreakpointsContainer {
-  max: number[];
-  min: number[];
-}
-
-export interface IBreakpoint {
-  max?: number;
-  min?: number;
 }
 
 const Container: React.FunctionComponent<
@@ -82,10 +73,7 @@ const Container: React.FunctionComponent<
     _setActiveMaxBreakpoints(_breakpoints.max);
     _setActiveMinBreakpoints(_breakpoints.min);
     if (onBreakpointChange) {
-      onBreakpointChange({
-        max: _breakpoints.max,
-        min: _breakpoints.min,
-      });
+      onBreakpointChange(_breakpoints);
     }
   };
 
