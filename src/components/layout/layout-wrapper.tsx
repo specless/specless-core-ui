@@ -7,6 +7,7 @@ import { IBreakpoint, IBreakpointsContainer } from '../../models/breakpoint';
 import Container from '../container/container';
 import { ThemeContext } from '../theme/theme';
 import _ from 'lodash/fp';
+import Layout from './layout';
 import {
   ILayoutApi,
   ILayoutBreakpointCallBack,
@@ -18,6 +19,7 @@ export interface ILayoutWrapperProps {
   siderHiddenMobile?: boolean;
   isLoading?: boolean;
   onBreakpointChange?: ILayoutBreakpointCallBack | ILayoutBreakpointCallBack[];
+  forceRefreshOnPropChange?: boolean;
 }
 
 const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
@@ -126,40 +128,6 @@ const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
     }, _onBreakpointChangeHandlers);
   };
 
-  /*
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isLoading === true) {
-      this.setLoading();
-    }
-
-    if (nextProps.isLoading === false) {
-      this.unsetLoading();
-    }
-
-    if (nextProps.siderHiddenMobile === true) {
-      this.hideMobileSider();
-    }
-
-    if (nextProps.siderHiddenMobile === false) {
-      this.showMobileSider();
-    }
-
-    if (
-      nextProps.siderState === 'collapsed' ||
-      nextProps.siderState === 'expanded' ||
-      nextProps.siderState === 'expanded-wide'
-    ) {
-      this.setState({
-        siderState: nextProps.siderState,
-      });
-    } else {
-      this.setState({
-        siderState: 'normal',
-      });
-    }
-  }
-  */
-
   const _containerCSS = css`
     background-color: ${_theme('light-gray')};
     height: 100%;
@@ -231,9 +199,17 @@ const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
       <div
         className={cn('LayoutWrapper')}
         css={_layoutCSS}
-        data-loading={_isLoading}
-        data-sider-state={_siderState}
-        data-sider-hidden={_siderHiddenMobile}>
+        data-loading={
+          props.forceRefreshOnPropChange ? props.isLoading : _isLoading
+        }
+        data-sider-state={
+          props.forceRefreshOnPropChange ? props.siderState : _siderState
+        }
+        data-sider-hidden={
+          props.forceRefreshOnPropChange
+            ? props.siderHiddenMobile
+            : _siderHiddenMobile
+        }>
         <LayoutContext.Provider value={layoutApi}>
           {props.children}
         </LayoutContext.Provider>

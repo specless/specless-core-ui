@@ -83,7 +83,8 @@ storiesOf('Layout', module)
       <Layout
         isLoading={boolean('isLoading', false)}
         siderState={select('siderState', siderStates, 'normal' as any)}
-        siderHiddenMobile={boolean('siderHiddenMobile', true)}>
+        siderHiddenMobile={boolean('siderHiddenMobile', true)}
+        forceRefreshOnPropChange={true}>
         <Layout.Sider>
           <Layout.Nav />
           <Layout.SubNav />

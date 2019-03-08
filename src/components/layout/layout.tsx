@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, { useContext } from 'react';
 import { jsx } from '@emotion/core';
 import { ILayoutApi, LayoutContext } from './layout-api';
 import LayoutMain from './layout-main';
@@ -19,7 +19,6 @@ export interface ILayoutSubComponents {
   Message: typeof LayoutMessage;
   Main: typeof LayoutMain;
   Sider: typeof LayoutSider;
-  Api: React.Context<ILayoutApi>;
 }
 export interface ILayoutProps extends ILayoutWrapperProps {}
 
@@ -39,7 +38,5 @@ Layout.Bar = LayoutBar;
 Layout.Message = LayoutMessage;
 Layout.Main = LayoutMain;
 Layout.Sider = LayoutSider;
-
-Layout.Api = LayoutContext;
 
 export default Layout;
