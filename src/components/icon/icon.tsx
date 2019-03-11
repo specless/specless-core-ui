@@ -14,7 +14,7 @@ export interface IIcon {
 }
 
 const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
-  const { color, size, children, ...rest } = props;
+  const { color, size, children, iconTheme, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
   const colors = {
@@ -92,7 +92,7 @@ const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
   return (
     <AntIcon
       className={cn('Icon', color)}
-      theme={props.iconTheme}
+      theme={iconTheme}
       css={_css}
       {...rest}>
       {children}
