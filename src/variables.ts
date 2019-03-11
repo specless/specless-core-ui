@@ -292,7 +292,8 @@ theme['num-padding-base'] = sizes.padding.base;
 theme['num-padding-xs'] = sizes.padding.xs;
 theme['num-padding-sm'] = sizes.padding.sm;
 theme['num-padding-md'] = sizes.padding.md;
-theme['num-padding-lg'] = sizes.padding.lg;``
+theme['num-padding-lg'] = sizes.padding.lg;
+``;
 theme['num-padding-xl'] = sizes.padding.xl;
 
 theme['num-max-container-width'] = sizes.maxContainerWidth;
@@ -423,7 +424,6 @@ theme['heading-color-dark'] = theme['light-color'];
 theme['text-color-dark'] = theme['light-faded-1'];
 theme['text-color-secondary-dark'] = theme['light-faded-2'];
 
-
 theme['background-color-light'] = 'hsv(0, 0, 98%)';
 theme['background-color-base'] = 'hsv(0, 0, 96%)';
 
@@ -520,25 +520,30 @@ theme['h6-font-size'] = '12px';
 
 theme['num-sider-width'] = 280;
 theme['num-sider-width-collapsed'] = 64;
-theme['num-sider-width-expanded'] = theme['num-sider-width'] + theme['num-sider-width-collapsed'];
+theme['num-sider-width-expanded'] =
+  theme['num-sider-width'] + theme['num-sider-width-collapsed'];
 theme['sider-width'] = theme['num-sider-width'] + 'px';
 theme['sider-width-collapsed'] = theme['num-sider-width-collapsed'] + 'px';
 theme['sider-width-expanded'] = theme['num-sider-width-expanded'] + 'px';
 
-
 // Shadows
-
 
 theme['shadow-soft'] = '';
 theme['shadow-hard'] = '';
-theme['shadow-none'] = '0 0 0 1px rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0)';
-theme['shadow-elevation-0'] = '0 0 0 1px rgba(16,22,26,.15), 0 0 0 rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0)';
-theme['shadow-elevation-1'] = '0 0 0 1px rgba(16,22,26,0.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,0.125)';
-theme['shadow-elevation-2'] = '0 0 0 1px rgba(16,22,26,0.05), 0 1px 1px rgba(16,22,26,0.125), 0 2px 6px rgba(16,22,26,0.125)';
-theme['shadow-elevation-3'] = '0 0 0 1px rgba(16,22,26,0.05), 0 2px 4px rgba(16,22,26,0.125), 0 8px 24px rgba(16,22,26,0.125)';
-theme['shadow-elevation-4'] = '0 0 0 1px rgba(16,22,26,0.05), 0 4px 8px rgba(16,22,26,0.125), 0 18px 46px 6px rgba(16,22,26,0.125)';
-theme['shadow-hover'] = '0 0 0 1px rgba(16,22,26,0.05), 0 2px 4px rgba(16,22,26,0.125), 0 8px 24px rgba(16,22,26,0.125)';
-
+theme['shadow-none'] =
+  '0 0 0 1px rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0)';
+theme['shadow-elevation-0'] =
+  '0 0 0 1px rgba(16,22,26,.15), 0 0 0 rgba(16,22,26,0), 0 0 0 rgba(16,22,26,0)';
+theme['shadow-elevation-1'] =
+  '0 0 0 1px rgba(16,22,26,0.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,0.125)';
+theme['shadow-elevation-2'] =
+  '0 0 0 1px rgba(16,22,26,0.05), 0 1px 1px rgba(16,22,26,0.125), 0 2px 6px rgba(16,22,26,0.125)';
+theme['shadow-elevation-3'] =
+  '0 0 0 1px rgba(16,22,26,0.05), 0 2px 4px rgba(16,22,26,0.125), 0 8px 24px rgba(16,22,26,0.125)';
+theme['shadow-elevation-4'] =
+  '0 0 0 1px rgba(16,22,26,0.05), 0 4px 8px rgba(16,22,26,0.125), 0 18px 46px 6px rgba(16,22,26,0.125)';
+theme['shadow-hover'] =
+  '0 0 0 1px rgba(16,22,26,0.05), 0 2px 4px rgba(16,22,26,0.125), 0 8px 24px rgba(16,22,26,0.125)';
 
 // Icon Types
 theme.icons = [
@@ -907,11 +912,9 @@ theme.icons = [
   'zoom-out',
 ];
 
-
 // Article Styling
 
 theme['article-padding-vertical'] = '';
 theme['article-padding-horizontal'] = '';
-
 
 export default theme;

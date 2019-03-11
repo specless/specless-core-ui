@@ -6,13 +6,10 @@ import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../theme/theme';
 import { LayoutContext } from './layout-api';
 
-export interface ILayoutSider {
-  navigation?: JSX.Element | JSX.Element;
-  subNavigation?: JSX.Element | JSX.Element;
-}
+export interface ILayoutSider {}
 
 const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
-  const { navigation, subNavigation } = props;
+  const { children } = props;
 
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
@@ -92,8 +89,7 @@ const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
 
   return (
     <div className={cn('LayoutSider')} css={_layoutSiderCSS}>
-      {navigation}
-      {subNavigation}
+      {children}
     </div>
   );
 };

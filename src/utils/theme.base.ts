@@ -3,7 +3,7 @@ const base = () => {
     html, body {
         -webkit-font-smoothing: antialiased;
     }
-    `
+    `;
 };
 
 export default base;

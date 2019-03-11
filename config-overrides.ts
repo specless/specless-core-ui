@@ -10,6 +10,6 @@ const _overrides = CustomizaCRA.override(
   CustomizaCRA.addLessLoader({
     javascriptEnabled: true,
     modifyVars: Theme,
-  }),
+  })
 );
 module.exports = _overrides;

@@ -66,7 +66,7 @@ const fonts = () => {
         url("fonts/din/din_next_medium.eot") format("eot"),
         url("fonts/din/din_next_medium.ttf") format("truetype");
     }
-`
+`;
 };
 
 export default fonts;
