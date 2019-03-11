@@ -3,10 +3,12 @@ import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import Layout, { ILayoutProps } from './layout';
+import Layout from './layout';
 import Button from '../button/button';
 import Alert from '../alert/alert';
 import StorybookUI from '../../utils/storybook-ui';
+import { ISiderState } from './layout-api';
+import LayoutWrapper from './layout-wrapper';
 // import NavGroup from '../components/NavGroup';
 // import OrgPicker from '../components/OrgPicker';
 
@@ -71,6 +73,8 @@ let organizations = [
   },
 ];
 
+const breakpoints = [{ max: 480 }, { max: 1100 }, { min: 1100 }];
+
 storiesOf('Layout', module)
   .addDecorator((story) => <StorybookUI type='viewport'>{story()}</StorybookUI>)
   .add('Layout', () => (
@@ -80,11 +84,16 @@ storiesOf('Layout', module)
         width: 'calc(100vw)',
         minWidth: 300,
       }}>
-      <Layout
+      <LayoutWrapper
         isLoading={boolean('isLoading', false)}
-        siderState={select('siderState', siderStates, 'normal' as any)}
+        siderState={select<ISiderState>(
+          'siderState',
+          siderStates as any,
+          'normal'
+        )}
         siderHiddenMobile={boolean('siderHiddenMobile', true)}
-        forceRefreshOnPropChange={true}>
+        onBreakpointChange={[action('onBreakpointChange')]}
+        breakpoints={breakpoints}>
         <Layout.Sider>
           <Layout.Nav />
           <Layout.SubNav />
@@ -94,7 +103,7 @@ storiesOf('Layout', module)
           <Layout.Message />
           <Layout.Content />
         </Layout.Main>
-      </Layout>
+      </LayoutWrapper>
     </div>
   ));
 

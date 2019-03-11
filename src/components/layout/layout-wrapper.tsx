@@ -2,99 +2,27 @@
 import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
 import { Spin } from 'antd';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { IBreakpoint, IBreakpointsContainer } from '../../models/breakpoint';
 import Container from '../container/container';
 import { ThemeContext } from '../theme/theme';
 import _ from 'lodash/fp';
-import Layout from './layout';
-import {
-  ILayoutApi,
-  ILayoutBreakpointCallBack,
-  LayoutContext,
-} from './layout-api';
+import { ILayoutProps } from './layout';
+import { ILayoutBreakpointCallBack, LayoutContext } from './layout-api';
 
-export interface ILayoutWrapperProps {
-  siderState?: 'normal' | 'collapsed' | 'expanded' | 'expanded-wide';
-  siderHiddenMobile?: boolean;
-  isLoading?: boolean;
-  onBreakpointChange?: ILayoutBreakpointCallBack | ILayoutBreakpointCallBack[];
-  forceRefreshOnPropChange?: boolean;
+export interface ILayoutWrapperProps extends ILayoutProps {
+  breakpoints: IBreakpoint[];
+  onBreakpointChange: ILayoutBreakpointCallBack[];
 }
 
 const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
-  const _context = useContext(ThemeContext);
-  const _theme = _context.get;
+  const _themeContext = useContext(ThemeContext);
+  const _theme = _themeContext.get;
 
-  const _getInitialBreakpointHandlersArray = (
-    handlers?: ILayoutBreakpointCallBack | ILayoutBreakpointCallBack[]
-  ): ILayoutBreakpointCallBack[] => {
-    if (_.isNil) {
-      return [] as ILayoutBreakpointCallBack[];
-    }
-    if (_.isArray) {
-      return handlers as ILayoutBreakpointCallBack[];
-    }
-    return [handlers] as ILayoutBreakpointCallBack[];
-  };
-
-  const [_currentSize, _setCurrentSize] = useState<string>('');
-  const [_isLoading, _setIsLoading] = useState<boolean>(
-    props.isLoading as boolean
-  );
-  const [_siderState, _setSiderState] = useState<string>(
-    props.siderState as string
-  );
-  const [_siderHiddenMobile, _setSiderHiddenMobile] = useState<boolean>(
-    props.siderHiddenMobile as boolean
-  );
-  const [
-    _onBreakpointChangeHandlers,
-    _setOnBreakpointChangeHandlers,
-  ] = useState<ILayoutBreakpointCallBack[]>(
-    _getInitialBreakpointHandlersArray(props.onBreakpointChange)
-  );
-  const [_breakpoints, _setBreakpoints] = useState<IBreakpoint[]>([
-    { max: 480 },
-    { max: 1100 },
-    { min: 1100 },
-  ]);
-
-  const toggleMobileSider = () => {
-    _setSiderHiddenMobile(!_siderHiddenMobile);
-  };
-
-  const showMobileSider = () => {
-    _setSiderHiddenMobile(false);
-  };
-
-  const hideMobileSider = () => {
-    _setSiderHiddenMobile(true);
-  };
-
-  const toggleLoading = () => {
-    _setIsLoading(!_isLoading);
-  };
-
-  const setLoading = () => {
-    _setIsLoading(true);
-  };
-
-  const unsetLoading = () => {
-    _setIsLoading(false);
-  };
-
-  const addBreakpointListener = (callback: ILayoutBreakpointCallBack) => {
-    const _listeners = _.concat(_onBreakpointChangeHandlers, [callback]);
-    _setOnBreakpointChangeHandlers(_listeners);
-  };
-
-  const removeBreakpointListener = (callback: ILayoutBreakpointCallBack) => {
-    const _listeners = _.without([callback], _onBreakpointChangeHandlers);
-    _setOnBreakpointChangeHandlers(_listeners);
-  };
+  const _layoutContext = useContext(LayoutContext);
 
   const handleBreakpointChanges = (breakpoints: IBreakpointsContainer) => {
+    const {} = props;
     let hasMobile = false;
     let hasTablet = false;
     let hasDesktop = false;
@@ -116,16 +44,16 @@ const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
     }, breakpoints.min);
 
     if (hasDesktop) {
-      _setCurrentSize('desktop');
+      _layoutContext.setCurrentSize('desktop');
     } else if (hasTablet && hasMobile) {
-      _setCurrentSize('mobile');
+      _layoutContext.setCurrentSize('mobile');
     } else if (hasTablet) {
-      _setCurrentSize('tablet');
+      _layoutContext.setCurrentSize('tablet');
     }
 
     _.forEach((callback) => {
       callback(breakpoints);
-    }, _onBreakpointChangeHandlers);
+    }, props.onBreakpointChange);
   };
 
   const _containerCSS = css`
@@ -168,64 +96,25 @@ const LayoutWrapper: React.FunctionComponent<ILayoutWrapperProps> = (props) => {
     }
   `;
 
-  const layoutApi: ILayoutApi = {
-    toggleMobileSider,
-    hideMobileSider,
-    showMobileSider,
-    toggleLoading,
-    setLoading,
-    unsetLoading,
-    addBreakpointListener,
-    removeBreakpointListener,
-    // setLayoutState: setLayoutState,
-    getState() {
-      return {
-        isLoading: _isLoading,
-        siderState: _siderState,
-        siderHiddenMobile: _siderHiddenMobile,
-        currentSize: _currentSize,
-        onBreakpointChangeHandlers: _onBreakpointChangeHandlers,
-        breakpoints: _breakpoints,
-      };
-    },
-  };
-
   return (
     <Container
       css={_containerCSS}
       noMaxWidth
-      breakpoints={_breakpoints}
+      breakpoints={props.breakpoints}
       onBreakpointChange={handleBreakpointChanges}>
       <div
         className={cn('LayoutWrapper')}
         css={_layoutCSS}
-        data-loading={
-          props.forceRefreshOnPropChange ? props.isLoading : _isLoading
-        }
-        data-sider-state={
-          props.forceRefreshOnPropChange ? props.siderState : _siderState
-        }
-        data-sider-hidden={
-          props.forceRefreshOnPropChange
-            ? props.siderHiddenMobile
-            : _siderHiddenMobile
-        }>
-        <LayoutContext.Provider value={layoutApi}>
-          {props.children}
-        </LayoutContext.Provider>
+        data-loading={props.isLoading}
+        data-sider-state={props.siderState}
+        data-sider-hidden={props.siderHiddenMobile}>
+        {props.children}
         <div className='LayoutLoadingSpinner'>
           <Spin size='large' />
         </div>
       </div>
     </Container>
   );
-};
-
-LayoutWrapper.defaultProps = {
-  siderState: 'normal',
-  siderHiddenMobile: true,
-  isLoading: false,
-  onBreakpointChange: undefined,
 };
 
 export default LayoutWrapper;
