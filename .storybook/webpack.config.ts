@@ -2,6 +2,12 @@ import variables from '../src/variables';
 import path from 'path';
 
 const _config = ({ config, mode }: any) => {
+  const _isProd = mode === 'PRODUCTION';
+  const _configFile = _isProd
+    ? path.resolve(__dirname, '../tsconfig.prod.json')
+    : path.resolve(__dirname, '../tsconfig.json');
+
+  console.log(_configFile);
   // Extend config as you need.
   config.module.rules.push({
     loader: 'babel-loader',
@@ -15,12 +21,16 @@ const _config = ({ config, mode }: any) => {
       ],
     },
   });
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: path.resolve(__dirname, '../src'),
     use: [
       {
         loader: require.resolve('ts-loader'),
+        options: {
+          configFile: _configFile,
+        },
       },
     ],
   });
