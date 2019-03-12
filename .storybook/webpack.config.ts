@@ -1,4 +1,5 @@
 import variables from '../src/variables';
+import path from 'path';
 
 const _config = ({ config, mode }: any) => {
   // Extend config as you need.
@@ -16,6 +17,7 @@ const _config = ({ config, mode }: any) => {
   });
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
+    include: path.resolve(__dirname, '../src'),
     use: [
       {
         loader: require.resolve('ts-loader'),
