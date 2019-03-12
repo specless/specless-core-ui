@@ -3,47 +3,55 @@ import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { LinkProps } from 'react-router-dom';
+import NavGroup, { INavGroupProps } from '../nav-group/nav-group';
+import { INavItemProps } from '../nav-item/nav-item';
+import OrgPicker from '../org-picker/org-picker';
 import Layout from './layout';
-import Button from '../button/button';
 import Alert from '../alert/alert';
 import StorybookUI from '../../utils/storybook-ui';
 import { ISiderState } from './layout-api';
 import LayoutWrapper from './layout-wrapper';
-// import NavGroup from '../components/NavGroup';
-// import OrgPicker from '../components/OrgPicker';
+import { MemoryRouter } from 'react-router';
 
 const siderStates = {
   normal: 'normal',
   collapsed: 'collapsed',
   expanded: 'expanded',
   'expanded-wide': 'expanded-wide',
-};
+} as { [key: string]: ISiderState };
 
+type IProps = INavItemProps & LinkProps & Pick<INavGroupProps, 'size' | 'type'>;
 const navItems = [
   {
-    content: 'Dashboard',
+    children: 'Dashboard',
     icon: 'dashboard',
     state: 'active',
-    onClick: function() {},
+    to: '/dashboard',
+    onClick: action('onClick (Dashboard)'),
   },
   {
-    content: 'Browse',
+    children: 'Browse',
     icon: 'eye',
-    onClick: function() {},
+    to: '/browse',
+    onClick: action('onClick (Browse)'),
   },
   {
-    content: 'Ad Products',
+    children: 'Ad Products',
     icon: 'shop',
-    onClick: function() {},
+    to: '/ad-products',
+    onClick: action('onClick (Ad Products)'),
   },
   {
-    content: 'Reporting',
+    children: 'Reporting',
     icon: 'bar-chart',
-    onClick: function() {},
+    to: '/reporting',
+    onClick: action('onClick (Reporting)'),
+    state: 'disabled',
   },
-];
+] as IProps[];
 
-let organizations = [
+const organizations = [
   {
     name: 'NBC Universal',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg',
@@ -75,9 +83,13 @@ let organizations = [
 
 const breakpoints = [{ max: 480 }, { max: 1100 }, { min: 1100 }];
 
-storiesOf('Layout', module)
-  .addDecorator((story) => <StorybookUI type='viewport'>{story()}</StorybookUI>)
-  .add('Layout', () => (
+storiesOf('General/Layout', module)
+  .addDecorator((story) => (
+    <StorybookUI type='viewport'>
+      <MemoryRouter>{story()}</MemoryRouter>
+    </StorybookUI>
+  ))
+  .add('Base', () => (
     <div
       style={{
         height: 'calc(100vh)',
@@ -86,11 +98,7 @@ storiesOf('Layout', module)
       }}>
       <LayoutWrapper
         isLoading={boolean('isLoading', false)}
-        siderState={select<ISiderState>(
-          'siderState',
-          siderStates as any,
-          'normal'
-        )}
+        siderState={select<ISiderState>('siderState', siderStates, 'normal')}
         siderHiddenMobile={boolean('siderHiddenMobile', true)}
         onBreakpointChange={[action('onBreakpointChange')]}
         breakpoints={breakpoints}>
@@ -105,38 +113,39 @@ storiesOf('Layout', module)
         </Layout.Main>
       </LayoutWrapper>
     </div>
-  ));
-
-/*storiesOf('Layout', module)
-  .addDecorator((story) => <StorybookUI type='viewport'>{story()}</StorybookUI>)
-  .add('Layout (With Content)', () => (
+  ))
+  .add('With Content', () => (
     <div
       style={{
         height: 'calc(100vh)',
         width: 'calc(100vw)',
         minWidth: 300,
       }}>
-      <Layout
+      <LayoutWrapper
         isLoading={boolean('isLoading', false)}
         siderState={select('siderState', siderStates, 'normal')}
         siderHiddenMobile={boolean('siderHiddenMobile', true)}
-        onBreakpointChange={action('onBreakpointChange')}>
-        <Layout.Message>
-          <Alert
-            message='Example Message'
-            description='Additional description and information goes here.'
-            type='info'
-            showIcon
-            closable
-          />
-        </Layout.Message>
-
-        <Layout.Nav>
-          {/!*<OrgPicker organizations={organizations} />*!/}
-          {/!*<NavGroup type='menu' navItems={navItems} />*!/}
-        </Layout.Nav>
-
-        <Layout.Content />
-      </Layout>
+        onBreakpointChange={[action('onBreakpointChange')]}
+        breakpoints={breakpoints}>
+        <Layout.Sider>
+          <Layout.Nav>
+            <OrgPicker organizations={organizations} />
+            <NavGroup type='menu' navItems={navItems} />
+          </Layout.Nav>
+        </Layout.Sider>
+        <Layout.Main>
+          <Layout.Bar />
+          <Layout.Message>
+            <Alert
+              message='Example Message'
+              description='Additional description and information goes here.'
+              type='info'
+              showIcon
+              closable
+            />
+          </Layout.Message>
+          <Layout.Content />
+        </Layout.Main>
+      </LayoutWrapper>
     </div>
-  ));*/
+  ));
