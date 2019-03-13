@@ -1,6 +1,6 @@
 {
   "name": "@specless/core-ui",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -21,9 +21,13 @@
     "shades": "^2.0.0"
   },
   "scripts": {
-    "build": "rm -rfd docs/ dist/ && yarn build-storybook",
+    "clean": "yarn clean-docs && yarn clean-dist",
+    "clean-docs": "rm -rfd docs/ ",
+    "clean-dist": "rm -rfd dist/",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public -o docs"
+    "build": "yarn build-storybook && yarn build-npm",
+    "build-npm": "yarn clean-dist && tsc -p ./tsconfig.prod.json",
+    "build-storybook": "yarn clean-docs &&  build-storybook -s public -o docs"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -7,27 +7,13 @@ const _config = ({ config, mode }: any) => {
     ? path.resolve(__dirname, '../tsconfig.prod.json')
     : path.resolve(__dirname, '../tsconfig.json');
 
-  console.log(_configFile);
   // Extend config as you need.
-  config.module.rules.push({
-    loader: 'babel-loader',
-    exclude: /node_modules/,
-    test: /\.js$/,
-    options: {
-      presets: ['@babel/react'],
-      plugins: [
-        ['import', { libraryName: 'antd', style: true }],
-        ['transform-class-properties', { spec: true }],
-      ],
-    },
-  });
-
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: path.resolve(__dirname, '../src'),
     use: [
       {
-        loader: require.resolve('ts-loader'),
+        loader: 'ts-loader',
         options: {
           configFile: _configFile,
         },
