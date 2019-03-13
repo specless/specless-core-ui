@@ -4,6 +4,10 @@
 .storybook
 docs
 src
+.eslintrc.json
+.prettierrc
+tsconfig.prod.json
+tsconfig.json
 
 # dependencies
 /node_modules
