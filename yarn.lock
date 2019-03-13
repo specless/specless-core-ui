@@ -1590,6 +1590,13 @@
   version "4.14.122"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.122.tgz#3e31394c38cf1e5949fb54c1192cbc406f152c6c"
 
+"@types/mini-css-extract-plugin@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-0.2.0.tgz#afb037dbbd76f6c13803927c2751d194188b5d47"
+  integrity sha512-oHec+Vasp+K3C1Hb9HpwbA9Iw8ywqDgo9edWQJdBqxu05JH2AQsR56Zo5THpYbu1ieh/xJCvMRIHRdvrUBDmcA==
+  dependencies:
+    "@types/webpack" "*"
+
 "@types/node@*", "@types/node@^11.10.5":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.0.tgz#070e9ce7c90e727aca0e0c14e470f9a93ffe9390"
@@ -1704,7 +1711,7 @@
   version "1.13.9"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.9.tgz#a67287861c928ebf4159a908d1fb1a2a34d4097a"
 
-"@types/webpack@^4.4.25":
+"@types/webpack@*", "@types/webpack@^4.4.25":
   version "4.4.25"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.25.tgz#c8a1eb968a33a3e6da641f529c5add0d44d34809"
   dependencies:

@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import { ThemeContext } from '../theme/theme';
 
 export interface ILabelProps {}
-const Label: React.FunctionComponent<ILabelProps> = (props) => {
+export const Label: React.FunctionComponent<ILabelProps> = (props) => {
   const { children } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;

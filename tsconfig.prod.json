@@ -9,6 +9,7 @@
   "exclude": [
     "./node_modules",
     "./dist",
+    "./src/utils/storybook-ui.tsx",
     "./src/**/*.stories.ts",
     "./src/**/*.stories.tsx",
     "./src/**/*.spec.ts",

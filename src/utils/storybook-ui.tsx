@@ -8,7 +8,7 @@ export interface IStorybookUI {
   type?: 'resizable' | 'viewport';
 }
 
-const StorybookUI: React.FC<IStorybookUI> = (props) => {
+export const StorybookUI: React.FC<IStorybookUI> = (props) => {
   const { children, type } = props;
   const _cardDomRef = useRef<Card>(null);
   const [_initialWidth, _setInitialWidth] = useState<number>(0);

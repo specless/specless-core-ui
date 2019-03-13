@@ -1,6 +1,8 @@
 import variables from '../src/variables';
 import path from 'path';
 
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 const _config = ({ config, mode }: any) => {
   const _isProd = mode === 'PRODUCTION';
   const _configFile = _isProd
@@ -24,7 +26,7 @@ const _config = ({ config, mode }: any) => {
   config.module.rules.push({
     test: /\.less$/,
     loaders: [
-      'style-loader',
+      _isProd ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
       {
         loader: 'less-loader',
@@ -37,6 +39,27 @@ const _config = ({ config, mode }: any) => {
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
+
+  config.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: _isProd
+        ? 'specless-core-ui.[hash].css'
+        : 'specless-core-ui.css',
+      chunkFilename: _isProd ? '[id].[hash].css' : '[id].css',
+    })
+  );
+
+  config.optimization.splitChunks = {
+    cacheGroups: {
+      styles: {
+        name: 'styles',
+        test: /\.css$/,
+        chunks: 'all',
+        enforce: true,
+      },
+    },
+  };
+
   return config;
 };
 

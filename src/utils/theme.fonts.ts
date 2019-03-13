@@ -1,4 +1,4 @@
-const fonts = () => {
+export const fonts = () => {
   return `
     @font-face {
         font-family: "Circular";
