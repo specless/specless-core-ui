@@ -1,5 +1,4 @@
 import { css, Global } from '@emotion/core';
-import 'antd/dist/antd.less';
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
 import THEME_VARS from '../../variables';

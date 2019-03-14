@@ -10,6 +10,9 @@ const _config = ({ config, mode }: any) => {
     : path.resolve(__dirname, '../tsconfig.json');
 
   // Extend config as you need.
+  config.entry.push(
+    path.resolve(__dirname, '../node_modules/antd/dist/antd.less')
+  );
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: path.resolve(__dirname, '../src'),
