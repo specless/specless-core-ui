@@ -41,6 +41,7 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps> = (props) => {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
+      margin: 0 20px;
       width: 28px;
       height: 28px;
       filter: grayscale(100%);
@@ -56,19 +57,14 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps> = (props) => {
       white-space: nowrap;
       text-overflow: ellipsis;
       user-select: none;
-      padding: 0 20px;
       transition: 0.3s ease filter;
       line-height: 28px;
+    }
 
-      .Icon {
-        float: right;
-        margin: 0 10px 0 6px;
-        color: ${_theme('dark-faded-4')};
-        position: absolute;
-        right: 0;
-        top: 2px;
-        transition: 0.3s ease color;
-      }
+    .Icon {
+      margin: 0 10px 0 6px;
+      color: ${_theme('dark-faded-4')};
+      transition: 0.3s ease color;
     }
 
     &:hover,
