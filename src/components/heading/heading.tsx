@@ -1,6 +1,5 @@
 /** #jsx jsx*/
 import React, { useContext } from 'react';
-//import styled from '@emotion/styled'
 import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../theme/theme';
 

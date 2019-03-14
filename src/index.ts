@@ -21,7 +21,7 @@ export * from './models/organization';
 export {
   // Category: General
   // Button, Override Exported Above
-  Icon,
+  // Icon, Override Exported Above
   Typography,
   // Category: Layout
   // Layout, Override Exported Above

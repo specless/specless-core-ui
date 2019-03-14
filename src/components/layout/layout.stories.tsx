@@ -107,9 +107,9 @@ storiesOf('General/Layout', module)
           <Layout.SubNav />
         </Layout.Sider>
         <Layout.Main>
-          <Layout.Bar />
           <Layout.Message />
           <Layout.Content />
+          <Layout.Bar />
         </Layout.Main>
       </LayoutWrapper>
     </div>
@@ -132,9 +132,9 @@ storiesOf('General/Layout', module)
             <OrgPicker organizations={organizations} />
             <NavGroup type='menu' navItems={navItems} />
           </Layout.Nav>
+          <Layout.SubNav />
         </Layout.Sider>
         <Layout.Main>
-          <Layout.Bar />
           <Layout.Message>
             <Alert
               message='Example Message'
@@ -144,6 +144,7 @@ storiesOf('General/Layout', module)
               closable
             />
           </Layout.Message>
+          <Layout.Bar />
           <Layout.Content />
         </Layout.Main>
       </LayoutWrapper>

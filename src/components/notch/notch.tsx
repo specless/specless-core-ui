@@ -4,7 +4,7 @@ import { ThemeContext } from '../theme/theme';
 
 export interface INotchProps {}
 
-const Notch: React.FunctionComponent<INotchProps> = (props) => {
+export const Notch: React.FunctionComponent<INotchProps> = (props) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 

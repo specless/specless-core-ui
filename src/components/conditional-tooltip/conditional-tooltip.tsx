@@ -20,3 +20,5 @@ export const ConditionalTooltip: React.FunctionComponent<
   }
   return <div>{children}</div>;
 };
+
+export default ConditionalTooltip;

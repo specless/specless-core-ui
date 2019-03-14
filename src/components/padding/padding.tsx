@@ -10,7 +10,7 @@ export interface IPaddingProps {
   className?: string;
 }
 
-const Padding: React.FC<IPaddingProps> = (props) => {
+export const Padding: React.FC<IPaddingProps> = (props) => {
   const _context = useContext(ThemeContext);
 
   const { children } = props;

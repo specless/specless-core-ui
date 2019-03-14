@@ -13,7 +13,7 @@ export interface IIcon {
   size?: string;
 }
 
-const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
+export const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
   const { color, size, children, iconTheme, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;

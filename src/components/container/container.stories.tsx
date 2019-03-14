@@ -29,7 +29,7 @@ const exampleStyles = css`
   }
 `;
 
-storiesOf('Layout', module)
+storiesOf('General', module)
   .addDecorator((story) => (
     <StorybookUI type='resizable'>{story()}</StorybookUI>
   ))
