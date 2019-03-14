@@ -9,7 +9,7 @@ export interface IAlertProps {
   shadow?: number;
 }
 
-const Alert: React.FC<IAlertProps & AntAlertProps> = (props) => {
+export const Alert: React.FC<IAlertProps & AntAlertProps> = (props) => {
   const { children, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;

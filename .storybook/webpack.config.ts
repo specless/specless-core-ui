@@ -1,33 +1,24 @@
 import variables from '../src/variables';
 import path from 'path';
 
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 const _config = ({ config, mode }: any) => {
   const _isProd = mode === 'PRODUCTION';
   const _configFile = _isProd
     ? path.resolve(__dirname, '../tsconfig.prod.json')
     : path.resolve(__dirname, '../tsconfig.json');
 
-  console.log(_configFile);
   // Extend config as you need.
-  config.module.rules.push({
-    loader: 'babel-loader',
-    exclude: /node_modules/,
-    test: /\.js$/,
-    options: {
-      presets: ['@babel/react'],
-      plugins: [
-        ['import', { libraryName: 'antd', style: true }],
-        ['transform-class-properties', { spec: true }],
-      ],
-    },
-  });
-
+  config.entry.push(
+    path.resolve(__dirname, '../node_modules/antd/dist/antd.less')
+  );
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: path.resolve(__dirname, '../src'),
     use: [
       {
-        loader: require.resolve('ts-loader'),
+        loader: 'ts-loader',
         options: {
           configFile: _configFile,
         },
@@ -38,7 +29,7 @@ const _config = ({ config, mode }: any) => {
   config.module.rules.push({
     test: /\.less$/,
     loaders: [
-      'style-loader',
+      _isProd ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
       {
         loader: 'less-loader',
@@ -51,6 +42,27 @@ const _config = ({ config, mode }: any) => {
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
+
+  config.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: _isProd
+        ? 'specless-core-ui.[hash].css'
+        : 'specless-core-ui.css',
+      chunkFilename: _isProd ? '[id].[hash].css' : '[id].css',
+    })
+  );
+
+  config.optimization.splitChunks = {
+    cacheGroups: {
+      styles: {
+        name: 'styles',
+        test: /\.css$/,
+        chunks: 'all',
+        enforce: true,
+      },
+    },
+  };
+
   return config;
 };
 

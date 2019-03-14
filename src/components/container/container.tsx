@@ -14,7 +14,7 @@ export interface IContainerProps {
   onBreakpointChange?: (breakpoints: IBreakpointsContainer) => unknown;
 }
 
-const Container: React.FunctionComponent<
+export const Container: React.FunctionComponent<
   IContainerProps & React.HTMLAttributes<any>
 > = (props) => {
   const {

@@ -9,7 +9,7 @@ export interface ITextProps {
   size?: 'normal' | 'large' | 'small' | 'xlarge';
 }
 
-const Text: React.FunctionComponent<ITextProps> = (props) => {
+export const Text: React.FunctionComponent<ITextProps> = (props) => {
   const { size, children } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;

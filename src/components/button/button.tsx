@@ -10,7 +10,9 @@ export interface IButtonProps {
   shadow?: number;
 }
 
-const Button: React.FC<IButtonProps & AntButtonProps> = (props) => {
+export const Button: React.FunctionComponent<IButtonProps & AntButtonProps> = (
+  props
+) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 

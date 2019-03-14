@@ -32,9 +32,8 @@ export interface ILayoutProps {
 
 export interface ILayoutSubComponentProps {}
 
-const Layout: React.FunctionComponent<ILayoutProps> & ILayoutSubComponents = (
-  props
-) => {
+export const Layout: React.FunctionComponent<ILayoutProps> &
+  ILayoutSubComponents = (props) => {
   const { children } = props;
   const _layoutApi = useLayoutApi(props);
   const _layoutState = _layoutApi.getState();
