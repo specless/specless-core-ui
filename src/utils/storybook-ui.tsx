@@ -10,32 +10,22 @@ export interface IStorybookUI {
 
 export const StorybookUI: React.FC<IStorybookUI> = (props) => {
   const { children, type } = props;
-  const _cardDomRef = useRef<Card>(null);
-  const [_initialWidth, _setInitialWidth] = useState<number>(0);
-  const [_initialHeight, _setInitialHeight] = useState<number>(0);
+  const _ref = useRef<Card>(null);
+  const [_width, _setWidth] = useState<number>(window.innerWidth);
+  const [_height, _setHeight] = useState<number>(window.innerHeight);
   useEffect(() => {
-    if (!_cardDomRef.current) {
+    const _card = _.get('current.container', _ref);
+    if (!_card) {
       return;
     }
-    const _card = _.getOr(
-      {
-        width: window.innerWidth,
-        height: window.innerHeight,
-      },
-      'current.container',
-      _cardDomRef
-    );
-    _setInitialWidth(_card.clientWidth);
-    _setInitialHeight(_card.clientHeight);
-  }, []);
+    _setWidth(_card.clientWidth);
+    _setHeight(_card.clientHeight);
+  }, [_ref.current]);
   if (type === 'resizable') {
     return (
       <Padding size='lg'>
-        <ResizableBox
-          axis='x'
-          width={_initialWidth - 70}
-          height={undefined as any}>
-          <Card ref={_cardDomRef}>{children}</Card>
+        <ResizableBox axis='x' width={_width - 70} height={_height}>
+          <Card ref={_ref}>{children}</Card>
         </ResizableBox>
       </Padding>
     );

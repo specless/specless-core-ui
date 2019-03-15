@@ -70,7 +70,7 @@ storiesOf('General/Icon', module)
     <div>
       {_.map((item: string) => {
         return (
-          <Padding size='lg' display='inline-block'>
+          <Padding key={item} size='lg' display='inline-block'>
             <Card style={{ textAlign: 'center' }}>
               <Padding direction='bottom'>
                 <Icon

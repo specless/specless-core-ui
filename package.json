@@ -23,6 +23,7 @@
     "shades": "^2.0.0"
   },
   "scripts": {
+    "start": "yarn storybook",
     "clean": "yarn clean-docs && yarn clean-dist",
     "clean-docs": "rm -rfd docs/ ",
     "clean-dist": "rm -rfd dist/",
