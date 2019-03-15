@@ -1,4 +1,5 @@
-import { css } from '@emotion/core';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
@@ -30,14 +31,10 @@ export const NavGroup: React.FunctionComponent<INavGroupProps> = (props) => {
   const breakpoint = 200;
 
   const _navGroupCSS = css(`
-        padding-top: 10px;
         &[data-max~="${breakpoint}"] {
             padding-top: 0;
         }
 
-        .NavItem:not(:last-child) {
-            margin-bottom: 10px;
-        }
         &.isSmall-true {
             .NavItem {
                 float: left;
@@ -64,10 +61,11 @@ export const NavGroup: React.FunctionComponent<INavGroupProps> = (props) => {
               size={size}
               type={_type}
               to={navItem.to}
+              title={navItem.title}
               icon={navItem.icon}
               state={navItem.state}
               onClick={navItem.onClick}>
-              {navItem.children}
+              {navItem.title}
             </NavItem>
           );
         })

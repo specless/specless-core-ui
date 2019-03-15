@@ -106,4 +106,6 @@ Icon.defaultProps = {
   size: 'inherit',
 };
 
+Icon.displayName = 'Icon';
+
 export default Icon;

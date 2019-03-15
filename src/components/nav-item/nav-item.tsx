@@ -11,7 +11,7 @@ import { ThemeContext } from '../theme/theme';
 
 export interface INavItemProps {
   icon: string;
-  children: React.ReactNode;
+  title: string;
   state?: 'normal' | 'active' | 'disabled';
 }
 
@@ -178,7 +178,7 @@ export const NavItem: React.FunctionComponent<
         className={cn('NavItem', state, size, type)}
         css={_navItemCSS}>
         <Icon type={icon} />
-        <span>{children}</span>
+        <span>{title}</span>
       </Link>
     </ConditionalTooltip>
   );

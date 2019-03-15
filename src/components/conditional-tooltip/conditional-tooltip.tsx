@@ -1,7 +1,7 @@
-import { Tooltip } from 'antd';
 import React from 'react';
+import { Tooltip } from 'antd';
 
-export interface IConditionalToolTip {
+export interface IConditionalToolTip extends React.HTMLAttributes<any> {
   title?: string;
   type?: string;
 }
@@ -11,6 +11,10 @@ export const ConditionalTooltip: React.FunctionComponent<
 > = (props) => {
   const { title, children, type } = props;
 
+  if (!children) {
+    return null;
+  }
+
   if (type === 'tile') {
     return (
       <Tooltip placement='right' title={title}>
@@ -18,7 +22,9 @@ export const ConditionalTooltip: React.FunctionComponent<
       </Tooltip>
     );
   }
-  return <div>{children}</div>;
+  return children as any;
 };
+
+ConditionalTooltip.displayName = 'ConditionalTooltip';
 
 export default ConditionalTooltip;

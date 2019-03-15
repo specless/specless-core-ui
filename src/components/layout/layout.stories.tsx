@@ -24,26 +24,26 @@ const siderStates = {
 type IProps = INavItemProps & LinkProps & Pick<INavGroupProps, 'size' | 'type'>;
 const navItems = [
   {
-    children: 'Dashboard',
+    title: 'Dashboard',
     icon: 'dashboard',
     state: 'active',
     to: '/dashboard',
     onClick: action('onClick (Dashboard)'),
   },
   {
-    children: 'Browse',
+    title: 'Browse',
     icon: 'eye',
     to: '/browse',
     onClick: action('onClick (Browse)'),
   },
   {
-    children: 'Ad Products',
+    title: 'Ad Products',
     icon: 'shop',
     to: '/ad-products',
     onClick: action('onClick (Ad Products)'),
   },
   {
-    children: 'Reporting',
+    title: 'Reporting',
     icon: 'bar-chart',
     to: '/reporting',
     onClick: action('onClick (Reporting)'),
