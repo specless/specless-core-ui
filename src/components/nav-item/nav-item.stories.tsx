@@ -42,11 +42,11 @@ storiesOf('Navigation', module)
   .add('NavItem', () => (
     <NavItem
       type={select('type', types, 'menu')}
+      title={text('text', 'Homepage')}
       size={select('size', sizes, 'base')}
       state={select('state', states, 'normal')}
       to={text('to', 'https://gospecless.com')}
       icon={select('icon', icons, 'home')}
-      onClick={action('onClick')}>
-      {text('text', 'Homepage')}
-    </NavItem>
+      onClick={action('onClick')}
+    />
   ));
