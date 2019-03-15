@@ -1,6 +1,6 @@
 {
   "name": "@specless/core-ui",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -30,7 +30,7 @@
     "build-npm": "yarn clean-dist && tsc -p ./tsconfig.prod.json",
     "build-storybook": "yarn clean-docs &&  build-storybook -s public -o docs",
     "copy-css": "mv docs/main.css dist",
-    "prepublish": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
