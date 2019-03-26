@@ -1,23 +1,22 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
-import Icon from '../icon/icon';
 import React, { useContext } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
 
 import { ConditionalTooltip } from '../conditional-tooltip/conditional-tooltip';
 import { INavGroupProps } from '../nav-group/nav-group';
 import { ThemeContext } from '../theme/theme';
+import Icon from '../icon/icon';
 
-export interface INavItemProps {
+export interface INavItemProps extends React.AnchorHTMLAttributes<any> {
   icon: string;
   title: string;
   state?: 'normal' | 'active' | 'disabled';
+  render?: (props: any) => JSX.Element;
+  onClick?: React.MouseEventHandler<any>;
 }
 
-export const NavItem: React.FunctionComponent<
-  INavItemProps & LinkProps & Pick<INavGroupProps, 'size' | 'type'>
-> = (props) => {
+export const NavItem: React.FunctionComponent<INavItemProps & Pick<INavGroupProps, 'size' | 'type'>> = (props) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
@@ -25,12 +24,12 @@ export const NavItem: React.FunctionComponent<
     type,
     state,
     size,
-    to,
+    icon,
+    title,
+    render,
+    href,
     target,
     onClick,
-    icon,
-    children,
-    title,
   } = props;
 
   const _navItemCSS = css`
@@ -168,18 +167,26 @@ export const NavItem: React.FunctionComponent<
   &.small {
   }
   `;
-
+  const _className = cn('NavItem', state, size, type);
   return (
     <ConditionalTooltip title={title} type={type}>
-      <Link
-        to={to}
-        target={target}
-        onClick={onClick}
-        className={cn('NavItem', state, size, type)}
-        css={_navItemCSS}>
-        <Icon type={icon} />
-        <span>{title}</span>
-      </Link>
+      {
+        render
+          ? render({
+            ...props,
+            className: _className,
+            css: _navItemCSS,
+          })
+          : <a
+            href={href}
+            target={target}
+            onClick={onClick}
+            className={_className}
+            css={_navItemCSS}>
+            <Icon type={icon}/>
+            <span>{title}</span>
+          </a>
+      }
     </ConditionalTooltip>
   );
 };
@@ -189,7 +196,7 @@ NavItem.defaultProps = {
   type: 'menu',
   state: 'normal',
   icon: '',
-  href: '',
+
 };
 
 export default NavItem;

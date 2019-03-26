@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { object } from '@storybook/addon-knobs';
-import { LinkProps, MemoryRouter } from 'react-router-dom';
 import { INavItemProps } from '../nav-item/nav-item';
 import NavGroup, { INavGroupProps } from './nav-group';
 import StorybookUI from '../../utils/storybook-ui';
@@ -19,41 +18,39 @@ const sizes = {
   small: 'small',
 } as { [key: string]: 'base' | 'small' };
 
-type IProps = INavItemProps & LinkProps & Pick<INavGroupProps, 'size' | 'type'>;
+type IProps = INavItemProps & Pick<INavGroupProps, 'size' | 'type'>;
 const navItems = [
   {
     title: 'Dashboard',
     icon: 'dashboard',
     state: 'active',
-    to: '/dashboard',
-    onClick: action('onClick (Dashboard)'),
+    href: '/dashboard',
+    onClick: (event) => event.preventDefault(),
   },
   {
     title: 'Browse',
     icon: 'eye',
-    to: '/browse',
-    onClick: action('onClick (Browse)'),
+    href: '/browse',
+    onClick: (event) => event.preventDefault(),
   },
   {
     title: 'Ad Products',
     icon: 'shop',
-    to: '/ad-products',
-    onClick: action('onClick (Ad Products)'),
+    href: '/ad-products',
+    onClick: (event) => event.preventDefault(),
   },
   {
     title: 'Reporting',
     icon: 'bar-chart',
-    to: '/reporting',
-    onClick: action('onClick (Reporting)'),
+    href: '/reporting',
+    onClick: (event) => event.preventDefault(),
     state: 'disabled',
   },
 ] as IProps[];
 
 storiesOf('Navigation', module)
   .addDecorator((story) => (
-    <StorybookUI type='resizable'>
-      <MemoryRouter>{story()}</MemoryRouter>
-    </StorybookUI>
+    <StorybookUI type='resizable'>{story()}</StorybookUI>
   ))
   .add('NavGroup', () => (
     <NavGroup
