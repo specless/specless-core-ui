@@ -152,7 +152,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/layout/layout.stories.d.ts"
+    "url": "../dist/src/components/label/label.stories.d.ts"
   },
   {
     "revision": "25bffac4ebaf8962a37c980c39847421",
@@ -164,11 +164,11 @@ self.__precacheManifest = [
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/label/label.stories.d.ts"
+    "url": "../dist/src/components/heading/heading.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/heading/heading.stories.d.ts"
+    "url": "../dist/src/components/layout/layout.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
