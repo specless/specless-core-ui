@@ -23,6 +23,10 @@ export const LayoutMain: React.FunctionComponent<ILayoutMain> = (props) => {
     transition: 0.5s ease transform, 0.5s ease opacity;
     opacity: 1;
     border-left: 1px solid ${_theme('dark-faded-7')};
+    
+    [data-sider-state='disabled'] & {
+      border-left: 0px solid transparent;
+    }
 
     [data-loading='true'] & {
       transform: translateX(100%) !important;

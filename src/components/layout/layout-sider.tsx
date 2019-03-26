@@ -40,6 +40,10 @@ const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
     [data-sider-state='collapsed'] & {
       width: ${_theme('sider-width-collapsed')};
     }
+    
+    [data-sider-state='disabled'] & {
+      width: 0px;
+    }
 
     [data-min~='1100'] [data-sider-state='expanded'] & {
       width: ${_theme('sider-width-expanded')};
