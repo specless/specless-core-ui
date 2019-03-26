@@ -29,7 +29,7 @@
     "build-npm": "yarn clean-dist && tsc -p ./tsconfig.prod.json",
     "build-storybook": "yarn clean-docs &&  build-storybook -s public -o docs",
     "copy-css": "mv docs/main.css dist",
-    "prepublishOnly": "yarn build-npm"
+    "prepublishOnly": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
