@@ -44,6 +44,6 @@ storiesOf('Navigation', module)
       state={select('state', states, 'normal')}
       href={text('href', 'https://gospecless.com')}
       icon={select('icon', icons, 'home')}
-      onClick={action('onClick')}
+      onClick={(event) => event.preventDefault()}
     />
   ));
