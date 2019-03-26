@@ -15,6 +15,7 @@ import LayoutWrapper from './layout-wrapper';
 import { MemoryRouter } from 'react-router';
 
 const siderStates = {
+  disabled: 'disabled',
   normal: 'normal',
   collapsed: 'collapsed',
   expanded: 'expanded',
@@ -142,6 +143,7 @@ storiesOf('General/Layout', module)
               type='info'
               showIcon
               closable
+              banner
             />
           </Layout.Message>
           <Layout.Bar />
