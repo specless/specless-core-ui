@@ -9,12 +9,12 @@ import * as Shades from 'shades';
 
 export interface IIcon {
   color?: string;
-  iconTheme?: ThemeType;
+  theme?: ThemeType;
   size?: string;
 }
 
 export const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
-  const { color, size, children, iconTheme, ...rest } = props;
+  const { color, size, children, theme, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
   const colors = {
@@ -84,15 +84,15 @@ export const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
           fill: ${_colorLight};
         }
         [fill='#1890ff'] {
-          fill: ${color};
+          fill: currentColor;
         }
       }
     }
   `;
   return (
     <AntIcon
-      className={cn('Icon', color)}
-      theme={iconTheme}
+      className={cn('Icon', theme, color)}
+      theme={theme}
       css={_css}
       {...rest}>
       {children}
@@ -102,7 +102,7 @@ export const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
 
 Icon.defaultProps = {
   color: 'inherit' as any,
-  iconTheme: 'outlined',
+  theme: 'outlined',
   size: 'inherit',
 };
 

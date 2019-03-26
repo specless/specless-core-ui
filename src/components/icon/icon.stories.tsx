@@ -62,7 +62,7 @@ storiesOf('General/Icon', module)
           range: true,
           min: 0,
           max: 360,
-        } as any
+        } as any,
       )}
     />
   ))
@@ -86,7 +86,7 @@ storiesOf('General/Icon', module)
                       range: true,
                       min: 0,
                       max: 360,
-                    } as any
+                    } as any,
                   )}
                 />
               </Padding>
