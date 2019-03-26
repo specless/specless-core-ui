@@ -6,7 +6,6 @@ import { action } from '@storybook/addon-actions';
 import NavItem from './nav-item';
 import StorybookUI from '../../utils/storybook-ui';
 import variables from '../../variables';
-import { MemoryRouter } from 'react-router';
 
 import _ from 'lodash/fp';
 
@@ -35,9 +34,7 @@ _.forEach((icon: string) => {
 
 storiesOf('Navigation', module)
   .addDecorator((story) => (
-    <StorybookUI>
-      <MemoryRouter>{story()}</MemoryRouter>
-    </StorybookUI>
+    <StorybookUI>{story()}</StorybookUI>
   ))
   .add('NavItem', () => (
     <NavItem
@@ -45,7 +42,7 @@ storiesOf('Navigation', module)
       title={text('text', 'Homepage')}
       size={select('size', sizes, 'base')}
       state={select('state', states, 'normal')}
-      to={text('to', 'https://gospecless.com')}
+      href={text('href', 'https://gospecless.com')}
       icon={select('icon', icons, 'home')}
       onClick={action('onClick')}
     />

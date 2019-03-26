@@ -60,7 +60,7 @@ export const NavGroup: React.FunctionComponent<INavGroupProps> = (props) => {
               key={i}
               size={size}
               type={_type}
-              to={navItem.to}
+              href={navItem.href}
               title={navItem.title}
               icon={navItem.icon}
               state={navItem.state}

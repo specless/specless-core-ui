@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { LinkProps } from 'react-router-dom';
 import NavGroup, { INavGroupProps } from '../nav-group/nav-group';
 import { INavItemProps } from '../nav-item/nav-item';
 import OrgPicker from '../org-picker/org-picker';
@@ -12,7 +11,6 @@ import Alert from '../alert/alert';
 import StorybookUI from '../../utils/storybook-ui';
 import { ISiderState } from './layout-api';
 import LayoutWrapper from './layout-wrapper';
-import { MemoryRouter } from 'react-router';
 
 const siderStates = {
   disabled: 'disabled',
@@ -22,31 +20,31 @@ const siderStates = {
   'expanded-wide': 'expanded-wide',
 } as { [key: string]: ISiderState };
 
-type IProps = INavItemProps & LinkProps & Pick<INavGroupProps, 'size' | 'type'>;
+type IProps = INavItemProps & Pick<INavGroupProps, 'size' | 'type'>;
 const navItems = [
   {
     title: 'Dashboard',
     icon: 'dashboard',
     state: 'active',
-    to: '/dashboard',
+    href: '/dashboard',
     onClick: action('onClick (Dashboard)'),
   },
   {
     title: 'Browse',
     icon: 'eye',
-    to: '/browse',
+    href: '/browse',
     onClick: action('onClick (Browse)'),
   },
   {
     title: 'Ad Products',
     icon: 'shop',
-    to: '/ad-products',
+    href: '/ad-products',
     onClick: action('onClick (Ad Products)'),
   },
   {
     title: 'Reporting',
     icon: 'bar-chart',
-    to: '/reporting',
+    href: '/reporting',
     onClick: action('onClick (Reporting)'),
     state: 'disabled',
   },
@@ -87,7 +85,7 @@ const breakpoints = [{ max: 480 }, { max: 1100 }, { min: 1100 }];
 storiesOf('General/Layout', module)
   .addDecorator((story) => (
     <StorybookUI type='viewport'>
-      <MemoryRouter>{story()}</MemoryRouter>
+      {story()}
     </StorybookUI>
   ))
   .add('Base', () => (
@@ -104,13 +102,13 @@ storiesOf('General/Layout', module)
         onBreakpointChange={[action('onBreakpointChange')]}
         breakpoints={breakpoints}>
         <Layout.Sider>
-          <Layout.Nav />
-          <Layout.SubNav />
+          <Layout.Nav/>
+          <Layout.SubNav/>
         </Layout.Sider>
         <Layout.Main>
-          <Layout.Message />
-          <Layout.Content />
-          <Layout.Bar />
+          <Layout.Message/>
+          <Layout.Content/>
+          <Layout.Bar/>
         </Layout.Main>
       </LayoutWrapper>
     </div>
@@ -130,10 +128,10 @@ storiesOf('General/Layout', module)
         breakpoints={breakpoints}>
         <Layout.Sider>
           <Layout.Nav>
-            <OrgPicker organizations={organizations} />
-            <NavGroup type='menu' navItems={navItems} />
+            <OrgPicker organizations={organizations}/>
+            <NavGroup type='menu' navItems={navItems}/>
           </Layout.Nav>
-          <Layout.SubNav />
+          <Layout.SubNav/>
         </Layout.Sider>
         <Layout.Main>
           <Layout.Message>
@@ -146,8 +144,8 @@ storiesOf('General/Layout', module)
               banner
             />
           </Layout.Message>
-          <Layout.Bar />
-          <Layout.Content />
+          <Layout.Bar/>
+          <Layout.Content/>
         </Layout.Main>
       </LayoutWrapper>
     </div>
