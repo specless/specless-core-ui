@@ -8,7 +8,7 @@ export type ILayoutBreakpointCallBack = (
   breakpoints: IBreakpointsContainer
 ) => void;
 
-export type ISiderState = 'normal' | 'collapsed' | 'expanded' | 'expanded-wide';
+export type ISiderState = 'disabled' | 'normal' | 'collapsed' | 'expanded' | 'expanded-wide';
 
 export interface ILayoutApiState {
   isLoading: boolean;
