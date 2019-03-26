@@ -15,6 +15,7 @@ const Content: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
   const _layoutContentCSS = css`
     background-color: ${_theme('light-color')};
     flex-grow: 1;
+    position: relative;
   `;
   return (
     <div className={cn('LayoutContent')} css={_layoutContentCSS}>
