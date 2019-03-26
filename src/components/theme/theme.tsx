@@ -11,6 +11,10 @@ export interface IThemeProps extends React.HTMLAttributes<any> {
   data?: THEME;
 }
 
+export interface ITheme {
+  Data: typeof ThemeContext;
+}
+
 export interface IThemeContext {
   get: (key: string) => any;
   set: (key: string, value: any) => void;
@@ -23,7 +27,7 @@ export const ThemeContext = React.createContext<IThemeContext>({
   _vars: {},
 });
 
-export const Theme: React.FunctionComponent<IThemeProps> = (props) => {
+export const Theme: React.FunctionComponent<IThemeProps> & ITheme = (props) => {
   const { data, children } = props;
   const [_themeData, _setThemeData] = useState<THEME>(data || THEME_VARS);
   const _getVar = (key: string) => {
@@ -45,12 +49,13 @@ export const Theme: React.FunctionComponent<IThemeProps> = (props) => {
 
   return (
     <ThemeContext.Provider value={_themeAPI}>
-      <Global styles={_style} />
+      <Global styles={_style}/>
       {children}
     </ThemeContext.Provider>
   );
 };
 
+Theme.Data = ThemeContext;
 Theme.displayName = 'Theme';
 
 export default Theme;
