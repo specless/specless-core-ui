@@ -100,7 +100,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/nav-item/nav-item.stories.d.ts"
+    "url": "../dist/src/components/text/text.stories.d.ts"
   },
   {
     "revision": "3518a9db66cbd3636f0b3f5606db6957",
@@ -116,11 +116,11 @@ self.__precacheManifest = [
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/org-picker/org-picker.stories.d.ts"
+    "url": "../dist/src/components/nav-item/nav-item.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/text/text.stories.d.ts"
+    "url": "../dist/src/components/org-picker/org-picker.stories.d.ts"
   },
   {
     "revision": "25435da58c4a20222c00acf903e90629",
@@ -148,15 +148,19 @@ self.__precacheManifest = [
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/layout/layout.stories.d.ts"
+    "url": "../dist/src/components/nav-group/nav-group.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/nav-group/nav-group.stories.d.ts"
+    "url": "../dist/src/components/layout/layout.stories.d.ts"
   },
   {
     "revision": "25bffac4ebaf8962a37c980c39847421",
     "url": "../dist/src/utils/storybook-ui.d.ts"
+  },
+  {
+    "revision": "e2ebd7ddedcadeeadbf819c35985c768",
+    "url": "../dist/src/components/heading/heading.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
@@ -165,10 +169,6 @@ self.__precacheManifest = [
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",
     "url": "../dist/src/components/icon/icon.stories.d.ts"
-  },
-  {
-    "revision": "e2ebd7ddedcadeeadbf819c35985c768",
-    "url": "../dist/src/components/heading/heading.stories.d.ts"
   },
   {
     "revision": "e2ebd7ddedcadeeadbf819c35985c768",

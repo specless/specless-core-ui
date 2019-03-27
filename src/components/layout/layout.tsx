@@ -22,6 +22,7 @@ export interface ILayoutSubComponents {
   Message: typeof LayoutMessage;
   Sider: typeof LayoutSider;
   Main: typeof LayoutMain;
+  Context: typeof LayoutContext;
 }
 export interface ILayoutProps {
   siderState?: ISiderState;
@@ -65,6 +66,7 @@ Layout.Bar = LayoutBar;
 Layout.Message = LayoutMessage;
 Layout.Sider = LayoutSider;
 Layout.Main = LayoutMain;
+Layout.Context = LayoutContext;
 
 Layout.defaultProps = {
   siderState: 'normal',
