@@ -44,7 +44,7 @@ export const NavItem: React.FunctionComponent<INavItemProps & Pick<INavGroupProp
   text-overflow: ellipsis;
   position: relative;
   user-select: none;
-  height: 44.25p
+  height: 44.25px;
   &.base {
       font-weight: ${_theme('label-font-weight')};
       font-size: ${_theme('label-font-size')};
