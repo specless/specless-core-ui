@@ -5,7 +5,6 @@ import Icon from '../icon/icon';
 import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../theme/theme';
 import { LayoutContext } from './layout-api';
-
 export interface ILayoutSider {}
 
 const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
