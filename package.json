@@ -28,7 +28,7 @@
     "build": "yarn build-storybook && yarn build-npm && yarn copy-css",
     "build-npm": "yarn clean-dist && tsc -p ./tsconfig.prod.json",
     "build-storybook": "yarn clean-docs &&  build-storybook -s public -o docs",
-    "copy-css": "mv docs/main.css dist",
+    "copy-css": "cp docs/main.css dist",
     "prepublishOnly": "yarn build"
   },
   "eslintConfig": {
