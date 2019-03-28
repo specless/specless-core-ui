@@ -75,10 +75,8 @@ const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
       z-index: 0;
     }
 
-    [data-max~='480']
-      [data-sider-state='expanded'][data-sider-hidden='false']
-      & {
-      z-index: 3;
+    [data-max~='480'] [data-sider-state='expanded'][data-sider-hidden='false'] & {
+        z-index: 1;
     }
 
     [data-max~='480'] [data-sider-state='expanded-wide'] & {

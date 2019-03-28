@@ -36,11 +36,9 @@ const Nav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
       width: ${_theme('sider-width')};
     }
 
-    [data-max~='480']
-      [data-sider-state='expanded'][data-sider-hidden='false']
-      & {
-      display: none;
-    }
+    [data-max~='480'] [data-sider-state='expanded'][data-sider-hidden='false'] & {
+        width: ${_theme('sider-width-collapsed')};
+
   `;
 
   return (

@@ -14,40 +14,49 @@ export const LayoutMain: React.FunctionComponent<ILayoutMain> = (props) => {
   const _theme = _context.get;
 
   const _layoutMainCSS = css`
-            position: relative;
-            flex-grow: 1;
-            display: flex;
-            align-items: stretch;
-            flex-direction: column;
-            z-index: 2;
-            transform: translateX(0);
-            transition: 0.5s ease transform, 0.5s ease opacity;
-            opacity: 1;
-            border-left: 1px solid ${_theme('dark-faded-7')};
-            [data-loading="true"] & {
-                transform: translateX(100%) !important;
-                opacity: 0;
-                pointer-events: none;
-            }
-            &::after {
-                content: '';
-                display: block;
-                position: absolute;
-                z-index: 0;
-                pointer-events: none;
-                background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
-                top: 0;
-                bottom: 0;
-                width: 20px;
-                right: 100%;
-                opacity: 0.025;
-            }
-            [data-max~="480"] [data-sider-state='collapsed'][data-sider-hidden='false'] & {
-                transform: translateX(${_theme('sider-width-collapsed')});
-            }
-            [data-max~="480"] [data-sider-state='normal'][data-sider-hidden='false'] & {
-                transform: translateX(${_theme('sider-width')});
-            }`;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    z-index: 2;
+    transform: translateX(0);
+    transition: 0.5s ease transform, 0.5s ease opacity;
+    opacity: 1;
+    border-left: 1px solid ${_theme('dark-faded-7')};
+
+    [data-loading="true"] & {
+        transform: translateX(100%) !important;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        right: 100%;
+        opacity: 0.025;
+    }
+
+    [data-max~="480"] [data-sider-state='collapsed'][data-sider-hidden='false'] & {
+        transform: translateX(${_theme('sider-width-collapsed')});
+    }
+
+    [data-max~="480"] [data-sider-state='normal'][data-sider-hidden='false'] & {
+        transform: translateX(${_theme('sider-width')});
+    }
+
+    [data-max~="480"] [data-sider-state='expanded'][data-sider-hidden='false'] & {
+        transform: translateX(calc(${_theme('sider-width-collapsed')} + (${_theme('sider-width')} - 40px)));
+    }`;
   return (
     <div className={cn('LayoutMain')} css={_layoutMainCSS}>
       {children}

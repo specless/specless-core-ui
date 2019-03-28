@@ -66,8 +66,16 @@ const SubNav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
     }
 
     [data-max~='1100'] [data-sider-state='expanded'] & {
-      left: ${_theme('sider-width-collapsed')};
-      opacity: 1;
+        left: calc(-${_theme('sider-width-collapsed')} - ${_theme('sider-width')});
+        border-right: 1px solid ${_theme('dark-faded-7')};
+        &::after, &::before {
+            opacity: 0.025;
+        }
+    }
+
+    [data-max~="1100"] [data-sider-state='expanded'][data-sider-hidden='false'] & {
+        left: ${_theme('sider-width-collapsed')};
+        opacity: 1;
 
       &::after,
       &::before {
@@ -75,11 +83,11 @@ const SubNav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
       }
     }
 
-    [data-max~='480'] [data-sider-state='expanded'] & {
-      width: ${_theme('sider-width')};
-      right: ${_theme('sider-width')};
-      left: auto;
-      opacity: 1;
+    [data-max~='1100'][data-max~='480'] [data-sider-state='expanded'] & {
+        width: calc(${_theme('sider-width')} - 40px);
+        left: ${_theme('sider-width-collapsed')};
+        border-right: none;
+        opacity: 1;
 
       &::after,
       &::before {
@@ -87,10 +95,8 @@ const SubNav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
       }
     }
 
-    [data-max~='480']
-      [data-sider-state='expanded'][data-sider-hidden='false']
-      & {
-      right: 0 !important;
+    [data-max~='1100'][data-max~='480'] [data-sider-state='expanded'][data-sider-hidden='false'] & {
+        left: ${_theme('sider-width-collapsed')};
 
       &::after,
       &::before {

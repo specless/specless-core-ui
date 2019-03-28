@@ -28,7 +28,7 @@ const Bar: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
     position: relative;
     display: none;
 
-    [data-max~='480'] & {
+    [data-max~='1100'] & {
       display: block;
     }
 
@@ -54,11 +54,26 @@ const Bar: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
       background-color: transparent;
       box-shadow: ${_theme('shadow-none')};
 
-      [data-sider-hidden='false'] & {
-        transform: translateY(-50%) translateX(-26px);
-        background-color: ${_theme('primary-color')};
-        color: ${_theme('light-color')};
-        box-shadow: ${_theme('shadow-elevation-3')};
+        [data-max~="1100"] [data-sider-hidden='false'] & {
+            transform: translateY(-50%) translateX(calc(${_theme('sider-width')} - 10px));
+            background-color: ${_theme('primary-color')};
+            color: ${_theme('light-color')};
+            box-shadow: ${_theme('shadow-elevation-3')};
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+
+            &:hover {
+                box-shadow: ${_theme('shadow-hover')}
+            }
+        }
+
+        [data-max~="480"] [data-sider-hidden='false'] & {
+            transform: translateY(-50%) translateX(-26px);
+            background-color: ${_theme('primary-color')};
+            color: ${_theme('light-color')};
+            box-shadow: ${_theme('shadow-elevation-3')};
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
 
         &:hover {
           box-shadow: ${_theme('shadow-hover')};
