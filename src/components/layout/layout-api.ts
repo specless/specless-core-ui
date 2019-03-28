@@ -37,7 +37,7 @@ export interface ILayoutApi {
 const DEFAULT_LAYOUT_API_STATE = {
   isLoading: false,
   siderState: 'normal' as ISiderState,
-  siderHiddenMobile: false,
+  siderHiddenMobile: true,
   currentSize: '',
   onBreakpointChangeHandlers: [],
   breakpoints: [],

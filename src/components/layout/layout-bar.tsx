@@ -28,7 +28,12 @@ const Bar: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
     position: relative;
     display: none;
 
-    [data-max~='1100'] & {
+    [data-max~='1100'] [data-sider-state='expanded'] & {
+      display: block;
+    }
+
+    [data-max~='480'] [data-sider-state='expanded'] &,
+    [data-max~='480'] [data-sider-state='normal'] & {
       display: block;
     }
 
