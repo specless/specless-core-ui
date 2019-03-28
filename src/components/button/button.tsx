@@ -10,8 +10,12 @@ export interface IButtonProps {
   shadow?: number;
 }
 
-export const Button: React.FunctionComponent<IButtonProps & AntButtonProps> = (
-  props
+export interface IButton {
+  Group: typeof AntButton.Group;
+}
+
+export const Button: React.FunctionComponent<IButtonProps & AntButtonProps> & IButton = (
+  props,
 ) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
@@ -179,6 +183,7 @@ export const Button: React.FunctionComponent<IButtonProps & AntButtonProps> = (
   );
 };
 
-(Button as any).Group = AntButton.Group;
+Button.Group = AntButton.Group;
+Button.displayName = 'Button';
 
 export default Button;
