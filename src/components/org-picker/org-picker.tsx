@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
 import { Dropdown } from 'antd';
+import { DropDownProps as AntDropdownProps } from 'antd/lib/dropdown/dropdown';
+import { MenuProps as AntMenuProps } from 'antd/lib/menu';
 import * as Shades from 'shades';
 
 import _ from 'lodash/fp';
@@ -14,10 +16,11 @@ import OrgMenu from './org-menu';
 export interface IOrgPickerProps {
   organizations: IOrganization[];
   onSettingsClick?: () => void;
+  menuProps?: Partial<AntMenuProps>;
 }
 
-export const OrgPicker: React.FunctionComponent<IOrgPickerProps> = (props) => {
-  const { organizations, onSettingsClick } = props;
+export const OrgPicker: React.FunctionComponent<IOrgPickerProps & Partial<AntDropdownProps>> = (props) => {
+  const { organizations, onSettingsClick, menuProps, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
@@ -103,6 +106,7 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps> = (props) => {
       organizations={organizations}
       onSettingsClick={onSettingsClick}
       styles={_orgCSS}
+      {...menuProps}
     />
   );
 
@@ -110,17 +114,24 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps> = (props) => {
   const _name = Shades.get('name')(_currentOrg);
 
   return (
-    <Dropdown overlay={_orgMenu} placement='bottomLeft' trigger={['click']}>
+    <Dropdown overlay={_orgMenu} placement='bottomLeft' trigger={['click']} {...rest}>
       <div tabIndex={0} className={cn('Org')} css={_orgCSS}>
         <span
           className={cn('OrgLogo')}
           style={{ backgroundImage: `url(${_logo})` }}
         />
         <span className={cn('OrgName')}>{_name as React.ReactText}</span>
-        <Icon type='caret-down' />
+        <Icon type='caret-down'/>
       </div>
     </Dropdown>
   );
+};
+
+OrgPicker.displayName = 'OrgPicker';
+OrgPicker.defaultProps = {
+  organizations: [],
+  onSettingsClick: undefined,
+  menuProps: {},
 };
 
 export default OrgPicker;
