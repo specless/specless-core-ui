@@ -85,4 +85,6 @@ export {
   ConfigProvider,
   Divider,
   LocaleProvider,
+  Row,
+  Col,
 } from 'antd';
