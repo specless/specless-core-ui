@@ -1,5 +1,6 @@
 import variables from '../src/variables';
 import path from 'path';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
@@ -42,7 +43,7 @@ const _config = ({ config, mode }: any) => {
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
-
+  config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
   config.plugins.push(
     new MiniCssExtractPlugin({
       filename: _isProd
