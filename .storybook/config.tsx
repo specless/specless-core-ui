@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDecorator, configure } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Theme from '../src/components/theme/theme';
+import Theme from '../src/components/theme';
 
 import _ from 'lodash/fp';
 

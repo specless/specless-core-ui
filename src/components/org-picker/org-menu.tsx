@@ -2,19 +2,20 @@
 import React, { useContext } from 'react';
 import cn from 'classnames';
 import { css, jsx, SerializedStyles } from '@emotion/core';
-import { Menu } from 'antd';
+import Menu  from '../menu';
+import { MenuProps as AntMenuProps } from 'antd/lib/menu';
 import { IOrganization } from '../../models/organization';
-import Button from '../button/button';
+import Button from '../button';
 
-import { ThemeContext } from '../theme/theme';
+import { ThemeContext } from '../theme';
 import _ from 'lodash/fp';
-import { IOrgPickerProps } from './org-picker';
+import { IOrgPickerProps } from './';
 
-export interface IOrgMenuProps extends IOrgPickerProps {
+export interface IOrgMenuProps extends Pick<IOrgPickerProps, 'organizations' | 'onSettingsClick'> {
   styles?: SerializedStyles;
 }
 
-export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
+export const OrgMenu: React.FunctionComponent<IOrgMenuProps & AntMenuProps> = (props) => {
   const { organizations, onSettingsClick, styles, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
@@ -38,6 +39,7 @@ export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
     }
   `;
   const _orgMenuCSS = css`
+    padding: 0; 
     position: relative;
     left: 6px;
     width: calc(100% - 12px);
@@ -50,6 +52,10 @@ export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
         border-bottom: none;
       }
     }
+  `;
+
+  const _orgMenuDividerCSS = css`
+    margin: 0;
   `;
 
   const _orgOptionsCSS = css`
@@ -66,7 +72,7 @@ export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
         }
         return (
           <Menu.Item
-            key={org.name}
+            key={org.id || org.name}
             className={cn('Org')}
             css={[styles, _orgMenuItemCSS]}>
             <span
@@ -76,7 +82,7 @@ export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
             <span className='OrgName'>{org.name}</span>
           </Menu.Item>
         );
-      })
+      }),
     )(organization);
   };
 
@@ -91,10 +97,17 @@ export const OrgMenu: React.FunctionComponent<IOrgMenuProps> = (props) => {
           Organization Settings
         </Button>
       </Menu.Item>
-      <Menu.Divider />
+      <Menu.Divider css={_orgMenuDividerCSS}/>
       {_renderOrgMenuItems(organizations)}
     </Menu>
   );
+};
+
+OrgMenu.displayName = 'OrgMenu';
+OrgMenu.defaultProps = {
+  organizations: [],
+  onSettingsClick: undefined,
+  styles: undefined,
 };
 
 export default OrgMenu;

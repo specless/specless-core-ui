@@ -2,8 +2,8 @@
 import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
 import React, { useContext } from 'react';
-import { ThemeContext } from '../theme/theme';
-import { ILayoutSubComponentProps } from './layout';
+import { ThemeContext } from '../theme';
+import { ILayoutSubComponentProps } from './';
 import { SiderControl } from './layout-sider';
 
 const Bar: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
@@ -28,7 +28,12 @@ const Bar: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
     position: relative;
     display: none;
 
-    [data-max~='1100'] & {
+    [data-max~='1100'] [data-sider-state='expanded'] & {
+      display: block;
+    }
+
+    [data-max~='480'] [data-sider-state='expanded'] &,
+    [data-max~='480'] [data-sider-state='normal'] & {
       display: block;
     }
 

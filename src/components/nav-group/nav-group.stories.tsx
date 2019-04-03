@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { object } from '@storybook/addon-knobs';
-import { INavItemProps } from '../nav-item/nav-item';
-import NavGroup, { INavGroupProps } from './nav-group';
+import { INavItemProps } from '../nav-item';
+import NavGroup, { INavGroupProps } from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 const types = {

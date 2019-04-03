@@ -2,8 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
 import { select } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import NavItem from './nav-item';
+import NavItem from './';
 import StorybookUI from '../../utils/storybook-ui';
 import variables from '../../variables';
 

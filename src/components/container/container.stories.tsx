@@ -5,10 +5,10 @@ import { boolean } from '@storybook/addon-knobs';
 import { object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { css, jsx } from '@emotion/core';
-import { Card } from 'antd';
+import Card from '../card';
 import StorybookUI from '../../utils/storybook-ui';
-import Padding from '../padding/padding';
-import Container from './container';
+import Padding from '../padding';
+import Container from './';
 
 const exampleBreakpoints = [{ max: 500 }, { max: 900 }, { min: 900 }];
 

@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import cn from 'classnames';
 import React, { useContext } from 'react';
-import Icon from '../icon/icon';
+import Icon from '../icon';
 import { css, jsx } from '@emotion/core';
-import { ThemeContext } from '../theme/theme';
+import { ThemeContext } from '../theme';
 import { LayoutContext } from './layout-api';
-
 export interface ILayoutSider {}
 
 const LayoutSider: React.FunctionComponent<ILayoutSider> = (props) => {
