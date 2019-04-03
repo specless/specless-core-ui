@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text } from '@storybook/addon-knobs';
-import Label from './label';
+import Label from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 storiesOf('Typography', module)

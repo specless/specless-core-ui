@@ -3,10 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs';
 import { number } from '@storybook/addon-knobs';
-import Icon from './icon';
-import Padding from '../padding/padding';
-import Text from '../text/text';
-import { Card } from 'antd';
+import Icon from './';
+import Padding from '../padding';
+import Text from '../text';
+import Card from '../card';
 import StorybookUI from '../../utils/storybook-ui';
 import variables from '../../variables';
 

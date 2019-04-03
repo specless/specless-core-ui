@@ -2,7 +2,7 @@
 import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
 import React, { useContext } from 'react';
-import { ThemeContext } from '../theme/theme';
+import { ThemeContext } from '../theme';
 
 export interface ILayoutMain {
 }

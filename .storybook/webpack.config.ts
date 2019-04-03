@@ -11,9 +11,9 @@ const _config = ({ config, mode }: any) => {
     : path.resolve(__dirname, '../tsconfig.json');
 
   // Extend config as you need.
-  config.entry.push(
+  /*config.entry.push(
     path.resolve(__dirname, '../node_modules/antd/dist/antd.less')
-  );
+  );*/
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     include: path.resolve(__dirname, '../src'),
@@ -30,7 +30,7 @@ const _config = ({ config, mode }: any) => {
   config.module.rules.push({
     test: /\.less$/,
     loaders: [
-      _isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+      /*_isProd ? MiniCssExtractPlugin.loader : */'style-loader',
       'css-loader',
       {
         loader: 'less-loader',
@@ -43,7 +43,7 @@ const _config = ({ config, mode }: any) => {
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
-  config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
+  /*config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}));
   config.plugins.push(
     new MiniCssExtractPlugin({
       filename: _isProd
@@ -62,7 +62,7 @@ const _config = ({ config, mode }: any) => {
         enforce: true,
       },
     },
-  };
+  };*/
 
   return config;
 };

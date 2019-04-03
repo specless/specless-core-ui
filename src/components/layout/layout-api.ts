@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
 import { IBreakpoint, IBreakpointsContainer } from '../../models/breakpoint';
-import { ILayoutProps } from './layout';
+import { ILayoutProps } from './';
 
 export type ILayoutBreakpointCallBack = (
   breakpoints: IBreakpointsContainer

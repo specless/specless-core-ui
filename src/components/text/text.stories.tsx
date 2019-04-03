@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
-import Text from './text';
+import Text from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 const sizes = {

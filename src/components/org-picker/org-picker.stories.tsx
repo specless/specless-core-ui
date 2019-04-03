@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import OrgPicker from './org-picker';
+import OrgPicker from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 let organizations = [
