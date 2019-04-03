@@ -2,14 +2,14 @@
 import React, { useContext } from 'react';
 import cn from 'classnames';
 import { css, jsx, SerializedStyles } from '@emotion/core';
-import { Menu } from 'antd';
+import Menu  from '../menu';
 import { MenuProps as AntMenuProps } from 'antd/lib/menu';
 import { IOrganization } from '../../models/organization';
-import Button from '../button/button';
+import Button from '../button';
 
-import { ThemeContext } from '../theme/theme';
+import { ThemeContext } from '../theme';
 import _ from 'lodash/fp';
-import { IOrgPickerProps } from './org-picker';
+import { IOrgPickerProps } from './';
 
 export interface IOrgMenuProps extends Pick<IOrgPickerProps, 'organizations' | 'onSettingsClick'> {
   styles?: SerializedStyles;

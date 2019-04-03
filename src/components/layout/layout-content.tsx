@@ -2,8 +2,8 @@
 import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
 import React, { useContext } from 'react';
-import { ThemeContext } from '../theme/theme';
-import { ILayoutSubComponentProps } from './layout';
+import { ThemeContext } from '../theme';
+import { ILayoutSubComponentProps } from './';
 import { LAYOUT_INNER_CONTENT_CSS } from './layout-api';
 
 const Content: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {

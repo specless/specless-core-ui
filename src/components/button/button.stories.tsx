@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import _ from 'lodash/fp';
 import React from 'react';
-import Button from './button';
+import Button from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 const variables = require('../../variables');

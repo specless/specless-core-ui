@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
-import { Spin } from 'antd';
+import Spin from '../spin';
 import React, { useContext } from 'react';
 import { IBreakpoint, IBreakpointsContainer } from '../../models/breakpoint';
-import Container from '../container/container';
-import { ThemeContext } from '../theme/theme';
+import Container from '../container';
+import { ThemeContext } from '../theme';
 import _ from 'lodash/fp';
-import { ILayoutProps } from './layout';
+import { ILayoutProps } from './';
 import { ILayoutBreakpointCallBack, LayoutContext } from './layout-api';
 
 export interface ILayoutWrapperProps extends ILayoutProps {

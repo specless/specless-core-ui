@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import _ from 'lodash/fp';
 import React from 'react';
-import Alert from './alert';
+import Alert from './';
 import StorybookUI from '../../utils/storybook-ui';
 
 const variables = require('../../variables');

@@ -1,9 +1,10 @@
-import { Card } from 'antd';
+import Card from '../components/card';
 import React, { useEffect, useRef, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
-import Padding from '../components/padding/padding';
+import Padding from '../components/padding';
 import 'react-resizable/css/styles.css';
 import _ from 'lodash/fp';
+
 export interface IStorybookUI {
   type?: 'resizable' | 'viewport';
 }
@@ -23,7 +24,7 @@ export const StorybookUI: React.FC<IStorybookUI> = (props) => {
         height: window.innerHeight,
       },
       'current.container',
-      _cardDomRef
+      _cardDomRef,
     );
     _setInitialWidth(_card.clientWidth);
     _setInitialHeight(_card.clientHeight);
