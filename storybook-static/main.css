@@ -1,0 +1,72 @@
+html, body {
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-weight: 400;
+  font-style: normal;
+  src:url(static/media/circular-book.9fe4b2a0.woff) format("woff"),
+    url(static/media/circular-book.1f6e1b9f.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 400;
+  font-style: italic;
+  src:url(static/media/circular-bookitalic.9adff88d.woff) format("woff"),
+    url(static/media/circular-bookitalic.233fe3cd.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 500;
+  font-style: normal;
+  src:url(static/media/circular-medium.2a4f3a1a.woff) format("woff"),
+    url(static/media/circular-medium.3900fcac.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 500;
+  font-style: italic;
+  src:url(static/media/circular-mediumitalic.e8cbfd44.woff) format("woff"),
+    url(static/media/circular-mediumitalic.c423f018.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 700;
+  font-style: normal;
+  src:url(static/media/circular-bold.fc61ae08.woff) format("woff"),
+    url(static/media/circular-bold.fc45c938.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 700;
+  font-style: italic;
+  src:url(static/media/circular-bolditalic.27912792.woff) format("woff"),
+    url(static/media/circular-bolditalic.289de4bb.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 800;
+  font-style: normal;
+  src:url(static/media/circular-black.8b715e12.woff) format("woff"),
+    url(static/media/circular-black.5ddff65f.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular";
+  font-weight: 800;
+  font-style: italic;
+  src:url(static/media/circular-blackitalic.8d549ae8.woff) format("woff"),
+    url(static/media/circular-blackitalic.68725b48.ttf) format("truetype");
+}
+@font-face {
+  font-family: "DIN";
+  font-weight: bold;
+  font-style: normal;
+  src:url(static/media/din_next_medium.6e305485.woff) format("woff"),
+    url(static/media/din_next_medium.93f285bc.woff2) format("woff2"),
+    url(static/media/din_next_medium.c90217d2.svg) format("svg"),
+    url(static/media/din_next_medium.334396fd.eot) format("eot"),
+    url(static/media/din_next_medium.d904b4cb.ttf) format("truetype");
+}
+
+/*# sourceMappingURL=main.css.map*/
