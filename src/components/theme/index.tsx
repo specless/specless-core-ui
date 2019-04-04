@@ -1,9 +1,7 @@
-import { css, Global } from '@emotion/core';
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
 import THEME_VARS from '../../variables';
-import base from '../../utils/theme.base';
-import fonts from '../../utils/theme.fonts';
+import '../../../public/fonts/fonts.css';
 
 type THEME = typeof THEME_VARS;
 
@@ -42,14 +40,9 @@ export const Theme: React.FunctionComponent<IThemeProps> & ITheme = (props) => {
     set: _setVar,
     _vars: _themeData,
   };
-  const _style = css`
-    ${base()}
-    ${fonts()}
-  `;
 
   return (
     <ThemeContext.Provider value={_themeAPI}>
-      <Global styles={_style}/>
       {children}
     </ThemeContext.Provider>
   );
