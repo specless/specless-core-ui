@@ -1,6 +1,6 @@
 {
   "name": "@specless/core-ui",
-  "version": "0.2.24",
+  "version": "0.2.26",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
@@ -29,11 +29,9 @@
     "clean:docs": "rm -rfd docs/ ",
     "clean:dist": "rm -rfd dist/",
     "storybook": "start-storybook -p 9009 -s public",
-    "build": "yarn build-storybook && yarn build:npm && yarn copy:fonts",
+    "build": "yarn build-storybook && yarn build:npm",
     "build:npm": "yarn clean:dist && tsc -p ./tsconfig.prod.json",
     "build:storybook": "yarn clean:docs && build-storybook -s public -o docs",
-    "copy:css": "cp docs/main.css dist",
-    "copy:fonts": "cp -R docs/fonts dist",
     "prepublishOnly": "yarn build"
   },
   "eslintConfig": {
