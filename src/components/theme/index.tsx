@@ -1,7 +1,7 @@
 import _ from 'lodash/fp';
 import React, { useState } from 'react';
 import THEME_VARS from '../../variables';
-import '../../../public/fonts';
+import '../../../public/fonts/fonts.css';
 
 type THEME = typeof THEME_VARS;
 
