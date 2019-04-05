@@ -10,7 +10,7 @@ export interface IThemeProps extends React.HTMLAttributes<any> {
 }
 
 export interface ITheme {
-  Data: typeof ThemeContext;
+  Context: typeof ThemeContext;
 }
 
 export interface IThemeContext {
@@ -48,7 +48,7 @@ export const Theme: React.FunctionComponent<IThemeProps> & ITheme = (props) => {
   );
 };
 
-Theme.Data = ThemeContext;
+Theme.Context = ThemeContext;
 Theme.displayName = 'Theme';
 
 export default Theme;
