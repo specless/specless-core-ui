@@ -19,6 +19,7 @@ import Theme from './components/theme';
 // PURE ANT DESIGN COMPONENTS
 import Typography from './components/typography';
 import Affix from './components/affix';
+import Badge from './components/badge';
 import Breadcrumb from './components/breadcrumb';
 import Dropdown from './components/dropdown';
 import Menu from './components/menu';
@@ -97,6 +98,7 @@ export {
   // Organization,
   Typography,
   Affix,
+  Badge,
   Breadcrumb,
   Dropdown,
   Menu,
