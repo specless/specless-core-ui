@@ -1,7 +1,7 @@
 import { Form } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import _ from 'lodash/fp';
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { IFormField } from '../models/form-field';
 
 export const getFormHelpers = (formProps: WrappedFormUtils) => {
@@ -28,16 +28,19 @@ export const getFormHelpers = (formProps: WrappedFormUtils) => {
 
     const _decorator = getFieldDecorator(field.id, field.config);
     const _field = _decorator(field.component);
+    const _validateStatus = _error ? 'error' : '';
+    const _help = _error || '';
     return <Form.Item
       key={field.id}
-      help={_error}
+      validateStatus={_validateStatus}
+      help={_help}
       {...field.formItemProps}
     >
       {_field}
     </Form.Item>;
   };
 
-  const _handleSubmit = (e: Event, cb: (values: any) => unknown) => {
+  const _handleSubmit = (e: FormEvent, cb: (values: any) => unknown) => {
     e.preventDefault();
     return new Promise<any>((resolve, reject) => {
       validateFields(async (err, values) => {
