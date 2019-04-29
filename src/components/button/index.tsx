@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { css, jsx } from '@emotion/core';
 import AntButton from 'antd/lib/button';
 import { ButtonProps as AntButtonProps } from 'antd/lib/button/button';
-import 'antd/lib/button/style';
 import { ThemeContext } from '../theme';
+import 'antd/lib/button/style';
 
 export interface IButtonProps {
   theme?: 'alt' | 'label';

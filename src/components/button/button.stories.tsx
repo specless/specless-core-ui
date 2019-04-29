@@ -69,7 +69,7 @@ storiesOf('General', module)
       ghost={boolean('ghost', false)}
       block={boolean('block', false)}
       icon={select('icon', icons as any, null as any)}
-      htmlType={select('htmlType', htmlTypes, 'button')}
+      htmlType={select('htmlType', htmlTypes, 'button') as 'button' | 'submit' | 'reset'}
       shape={select('shape', shapes as any, null as any)}
       shadow={select('shadow', shadows as any, null as any)}
       onClick={action('"onClick" event triggered')}
