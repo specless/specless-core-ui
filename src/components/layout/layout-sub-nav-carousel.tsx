@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import Carousel from '../carousel';
 import Input from '../input';
 import Icon from '../icon';
-import cn from 'classnames';
 
 export interface ISubNavCarousel {
 }
@@ -87,5 +86,7 @@ const SubNavCarousel: React.FunctionComponent<ISubNavCarousel> = (props) => {
     </Carousel>
   </div>;
 };
+
+SubNavCarousel.displayName = 'SubNavCarousel';
 
 export default SubNavCarousel;

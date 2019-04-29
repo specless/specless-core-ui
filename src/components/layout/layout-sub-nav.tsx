@@ -2,11 +2,17 @@
 import { css, jsx } from '@emotion/core';
 import cn from 'classnames';
 import React, { useContext } from 'react';
+
 import { ThemeContext } from '../theme';
 import { ILayoutSubComponentProps } from './';
 import { LAYOUT_INNER_CONTENT_CSS } from './layout-api';
+import SubNavCarousel from './layout-sub-nav-carousel';
 
-const SubNav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
+export interface SubNavComponents {
+  Carousel: SubNavCarousel;
+}
+
+const SubNav: React.FunctionComponent<ILayoutSubComponentProps> & SubNavComponents = (props) => {
   const { children } = props;
 
   const _context = useContext(ThemeContext);
@@ -150,5 +156,8 @@ const SubNav: React.FunctionComponent<ILayoutSubComponentProps> = (props) => {
     </div>
   );
 };
+
+SubNav.displayName = 'SubNav';
+SubNav.Carousel = SubNavCarousel;
 
 export default SubNav;
