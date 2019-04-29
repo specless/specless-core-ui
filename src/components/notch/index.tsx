@@ -1,14 +1,16 @@
+/** @jsx jsx */
 import React, { useContext } from 'react';
-import styled from '@emotion/styled';
+import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../theme';
 
-export interface INotchProps {}
+export interface INotchProps {
+}
 
 export const Notch: React.FunctionComponent<INotchProps> = (props) => {
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
-  const Notch = styled.div`
+  const _notchCSS = css`
     display: inline-block;
     width: 40px;
     height: 3px;
@@ -18,7 +20,7 @@ export const Notch: React.FunctionComponent<INotchProps> = (props) => {
 
   return (
     <div className='Notch'>
-      <Notch />
+      <div css={_notchCSS}/>
     </div>
   );
 };

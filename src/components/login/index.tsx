@@ -8,11 +8,11 @@ import Input from '../input';
 
 import { IFormField } from '../../models/form-field';
 import { getFormHelpers } from '../../utils/antd-form-helpers';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from 'antd/lib/form';
 import { ICredential } from '../../models/credential';
 import Icon from '../icon';
 
-interface ILoginProps {
+interface ILoginProps extends FormComponentProps {
   onGoogleLogin: () => void;
   onPasswordLogin: (credentials: ICredential) => void;
 }
@@ -26,7 +26,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
         getFieldsError,
         validateFields,
       },
-    } = props as ILoginProps & FormComponentProps;
+    } = props;
 
     const [_isLoading, _setIsLoading] = useState<boolean>(false);
     useEffect(() => {
@@ -112,6 +112,6 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
 ;
 
 Login.displayName = 'Login';
-const WrappedComponent = Form.create({ name: 'login' })(Login as React.FunctionComponent<ILoginProps & FormComponentProps>);
+const WrappedComponent = Form.create<ILoginProps>({ name: 'login' })(Login);
 
 export default WrappedComponent;

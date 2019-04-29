@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import React, { useContext } from 'react';
+import _ from 'lodash/fp';
 import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
 import AntIcon, { IconProps as AntIconProps, ThemeType } from 'antd/lib/icon';
 import { ThemeContext } from '../theme';
-import * as Shades from 'shades';
 
 export interface IIcon {
   color?: string;
@@ -66,9 +66,9 @@ export const Icon: React.FunctionComponent<IIcon & AntIconProps> = (props) => {
     huge: '64px',
   };
 
-  const _fontSize = Shades.get(size as string)(sizes as any);
-  const _colorMain = Shades.get(color as string, 'main')(colors as any);
-  const _colorLight = Shades.get(color as string, 'light')(colors as any);
+  const _fontSize = _.get(size, sizes);
+  const _colorMain = _.get('color.main', colors);
+  const _colorLight = _.get('color.light', colors);
 
   const _css = css`
     font-size: ${_fontSize};
