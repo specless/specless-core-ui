@@ -1,6 +1,6 @@
 {
   "name": "@specless/core-ui",
-  "version": "0.2.32",
+  "version": "0.2.36",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
