@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useContext } from 'react';
-import * as Shades from 'shades';
 import { ThemeContext } from '../theme';
+import _ from 'lodash/fp';
 
 export interface IPaddingProps {
   size?: string;
@@ -189,10 +189,10 @@ export const Padding: React.FC<IPaddingProps> = (props) => {
       display: block;
     }
   `;
-  const _size = Shades.get('size')(props);
-  const _display = Shades.get('display')(props);
-  const _direction = Shades.get('direction')(props);
-  const _className = Shades.get('className')(props);
+  const _size = _.get('size', props);
+  const _display = _.get('display', props);
+  const _direction = _.get('direction', props);
+  const _className = _.get('className', props);
   const _classes = `Padding ${_size} ${_display} ${_direction} ${_className}`;
 
   return <PaddingWrapper className={_classes}>{children}</PaddingWrapper>;

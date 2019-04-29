@@ -5,7 +5,6 @@ import { css, jsx } from '@emotion/core';
 import Dropdown from '../dropdown';
 import { DropDownProps as AntDropdownProps } from 'antd/lib/dropdown/dropdown';
 import { MenuProps as AntMenuProps } from 'antd/lib/menu';
-import * as Shades from 'shades';
 
 import _ from 'lodash/fp';
 import { IOrganization } from '../../models/organization';
@@ -24,7 +23,7 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps & Partial<AntDro
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
-  const _currentOrg = _.find('isCurrent', organizations) || {};
+  const _currentOrg: IOrganization | undefined = _.find('isCurrent', organizations);
 
   const _orgCSS = css`
     height: ${_theme('sider-width-collapsed')};
@@ -109,9 +108,8 @@ export const OrgPicker: React.FunctionComponent<IOrgPickerProps & Partial<AntDro
       {...menuProps}
     />
   );
-
-  const _logo = Shades.get('logo')(_currentOrg);
-  const _name = Shades.get('name')(_currentOrg);
+  const _logo = _.get('logo', _currentOrg);
+  const _name = _.get('name', _currentOrg);
 
   return (
     <Dropdown overlay={_orgMenu} placement='bottomLeft' trigger={['click']} {...rest}>

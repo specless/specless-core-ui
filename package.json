@@ -19,8 +19,7 @@
     "react-resizable": "^1.7.5",
     "react-scripts": "^2.1.8",
     "react-transition-group": "^2.6.0",
-    "shades": "^2.0.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.4.5"
   },
   "scripts": {
     "start": "yarn storybook",
