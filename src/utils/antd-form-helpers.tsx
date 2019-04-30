@@ -43,7 +43,7 @@ export const getFormHelpers = (formProps: WrappedFormUtils) => {
   const _handleSubmit = (e: FormEvent, cb: (values: any) => unknown) => {
     e.preventDefault();
     return new Promise<any>((resolve, reject) => {
-      validateFields(async (err, values) => {
+      validateFields((err, values) => {
         if (err) {
           reject(err);
         }
