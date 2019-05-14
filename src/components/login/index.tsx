@@ -1,34 +1,39 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { Checkbox } from 'antd';
+import { FormComponentProps } from 'antd/lib/form';
 import _ from 'lodash/fp';
+import React, { FormEvent, useEffect, useState } from 'react';
 
+import { ICredential } from '../../models/credential';
+import { IFormField } from '../../models/form-field';
+import { getFormHelpers } from '../../utils/antd-form-helpers';
 import Button from '../button';
 import Card from '../card';
 import Form from '../form';
-import Input from '../input';
-
-import { IFormField } from '../../models/form-field';
-import { getFormHelpers } from '../../utils/antd-form-helpers';
-import { FormComponentProps } from 'antd/lib/form';
-import { ICredential } from '../../models/credential';
 import Icon from '../icon';
+import Input from '../input';
 
 interface ILoginProps extends FormComponentProps {
   onGoogleLogin: () => void;
   onPasswordLogin: (credentials: ICredential) => void;
+  onForgotPassword: () => void;
 }
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
     const {
       onGoogleLogin,
       onPasswordLogin,
+      onForgotPassword,
       form,
       form: {
         getFieldsError,
         validateFields,
+        getFieldDecorator,
       },
     } = props;
 
     const [_isLoading, _setIsLoading] = useState<boolean>(false);
+    const [_isValidPassword, _setIsValidPassword] = useState<boolean>(false);
+
     useEffect(() => {
       validateFields();
     }, []);
@@ -104,6 +109,12 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
             >
               Log In
             </Button>
+          </Form.Item>
+          <Form.Item label='Remember Me' labelCol={{ span: 2 }}>
+            <Checkbox defaultChecked={true}/>
+          </Form.Item>
+          <Form.Item>
+            <Button type='primary' htmlType='button' onClick={onForgotPassword}>Forgot Password</Button>
           </Form.Item>
         </Form>
       </Card>
