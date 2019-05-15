@@ -11,6 +11,11 @@ import Icon from '../icon';
 import Input from '../input';
 import Text from '../text';
 
+export interface IPasswordResetPasswordCallbackValues {
+  password: string;
+  passwordResetToken: string;
+}
+
 interface IPasswordValidations {
   uppercase: boolean;
   lowercase: boolean;
@@ -19,14 +24,16 @@ interface IPasswordValidations {
 }
 
 interface IPasswordResetPasswordProps extends FormComponentProps {
-  onPasswordResetPassword: (values: { password: string; passwordResetToken: string }) => boolean;
+  onPasswordResetPassword: (values: IPasswordResetPasswordCallbackValues) => void;
   passwordResetToken: string;
+  passwordResetPasswordFailed?: boolean;
 }
 
 const PasswordResetPassword: React.FunctionComponent<IPasswordResetPasswordProps> = (props) => {
   const {
     onPasswordResetPassword,
     passwordResetToken,
+    passwordResetPasswordFailed,
     form,
     form: {
       getFieldsError,
@@ -44,7 +51,6 @@ const PasswordResetPassword: React.FunctionComponent<IPasswordResetPasswordProps
   };
 
   const [_isLoading, _setIsLoading] = useState<boolean>(false);
-  const [_isSuccessful, _setIsSuccessful] = useState<boolean>(true);
   const [_passwordValidations, _setPasswordValidations] = useState<IPasswordValidations>(defaultPasswordValidations);
   const isValidPassword = _.values(_passwordValidations).every((valid) => valid);
 
@@ -54,12 +60,7 @@ const PasswordResetPassword: React.FunctionComponent<IPasswordResetPasswordProps
 
   const _handleSubmit = async (e: FormEvent) => {
     _setIsLoading(true);
-    const successful = await _formHelpers.handleSubmit(e, onPasswordResetPassword);
-
-    if (!successful) {
-      _setIsSuccessful(false);
-    }
-
+    await _formHelpers.handleSubmit(e, onPasswordResetPassword);
     _setIsLoading(false);
   };
 
@@ -87,7 +88,10 @@ const PasswordResetPassword: React.FunctionComponent<IPasswordResetPasswordProps
     _setPasswordValidations(passwordValidations);
   };
 
-  const _title = _isSuccessful ? 'Update Your Password' : 'Something went wrong. Please contact us at support@gospecless.com';
+  const _title = passwordResetPasswordFailed
+    ? 'Something went wrong. Please contact us at support@gospecless.com'
+    : 'Update Your Password'
+    ;
 
   const fields: IFormField[] = [
     {
@@ -160,7 +164,7 @@ const PasswordResetPassword: React.FunctionComponent<IPasswordResetPasswordProps
           <Button
             type='primary'
             htmlType='submit'
-            disabled={_formHelpers.formHasErrors(getFieldsError()) || _isLoading || !isValidPassword || !_isSuccessful}
+            disabled={_formHelpers.formHasErrors(getFieldsError()) || _isLoading || !isValidPassword || passwordResetPasswordFailed}
           >
             Update Password
             </Button>

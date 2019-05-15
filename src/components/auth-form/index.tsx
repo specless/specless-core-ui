@@ -2,16 +2,19 @@ import React, { FormEvent, useEffect, useState } from 'react';
 
 import { ICredential } from '../../models/credential';
 import CoreLogin from '../login';
-import PasswordResetEmail from '../password-reset-email';
-import PasswordResetPassword from '../password-reset-password';
+import PasswordResetEmail, { IPasswordResetEmailCallbackValues } from '../password-reset-email';
+import PasswordResetPassword, { IPasswordResetPasswordCallbackValues } from '../password-reset-password';
 
 interface IAuthFormProps {
   onGoogleLogin: () => void;
   onPasswordLogin: (credentials: ICredential) => void;
-  onPasswordResetEmail: () => void;
-  onPasswordResetPassword: (values: { password: string; passwordResetToken: string }) => boolean;
+  onPasswordResetEmail: (values: IPasswordResetEmailCallbackValues) => void;
+  onPasswordResetPassword: (values: IPasswordResetPasswordCallbackValues) => void;
   passwordResetToken?: string;
   defaultShowPasswordEmail?: true;
+  loginFailed?: boolean;
+  passwordResetEmailFailed?: boolean;
+  passwordResetPasswordFailed?: boolean;
 }
 
 const AuthForm: React.FunctionComponent<IAuthFormProps> = (props) => {
@@ -21,7 +24,10 @@ const AuthForm: React.FunctionComponent<IAuthFormProps> = (props) => {
     onPasswordResetEmail,
     onPasswordResetPassword,
     passwordResetToken,
-    defaultShowPasswordEmail
+    defaultShowPasswordEmail,
+    loginFailed,
+    passwordResetEmailFailed,
+    passwordResetPasswordFailed,
   } = props;
 
   const [showResetPasswordEmail, setShowResetPasswordEmail] = useState<boolean>(defaultShowPasswordEmail || false);
@@ -35,6 +41,7 @@ const AuthForm: React.FunctionComponent<IAuthFormProps> = (props) => {
       onGoogleLogin = { onGoogleLogin }
       onPasswordLogin = { onPasswordLogin }
       toggleShowResetPasswordEmail = { toggleShowResetPasswordEmail }
+      loginFailed={loginFailed}
     />
   );
 
@@ -42,6 +49,7 @@ const AuthForm: React.FunctionComponent<IAuthFormProps> = (props) => {
     <PasswordResetEmail
       onPasswordResetEmail={onPasswordResetEmail}
       toggleShowResetPasswordEmail={toggleShowResetPasswordEmail}
+      passwordResetEmailFailed={passwordResetEmailFailed}
     />
   );
 
@@ -49,6 +57,7 @@ const AuthForm: React.FunctionComponent<IAuthFormProps> = (props) => {
     <PasswordResetPassword
       passwordResetToken={passwordResetToken}
       onPasswordResetPassword={onPasswordResetPassword}
+      passwordResetPasswordFailed={passwordResetPasswordFailed}
     />
   );
 
