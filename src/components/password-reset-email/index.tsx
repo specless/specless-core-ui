@@ -10,29 +10,45 @@ import Form from '../form';
 import Icon from '../icon';
 import Input from '../input';
 
+export interface IPasswordResetEmailCallbackValues {
+  email: string;
+}
+
 interface IPasswordResetEmailProps extends FormComponentProps {
-  onPasswordResetEmail: () => void;
+  onPasswordResetEmail: (values: IPasswordResetEmailCallbackValues) => void;
   toggleShowResetPasswordEmail: () => void;
+  passwordResetEmailFailed?: boolean;
 }
 
 const PasswordResetEmail: React.FunctionComponent<IPasswordResetEmailProps> = (props) => {
   const {
     onPasswordResetEmail,
     toggleShowResetPasswordEmail,
+    passwordResetEmailFailed,
     form,
     form: {
       getFieldsError,
       validateFields,
-      getFieldDecorator,
     },
   } = props;
+  const _formHelpers = getFormHelpers(form);
 
   const [_isLoading, _setIsLoading] = useState<boolean>(false);
-  const [_isValidPassword, _setIsValidPassword] = useState<boolean>(false);
+
+  const _handleSubmit = async (e: FormEvent) => {
+    _setIsLoading(true);
+    await _formHelpers.handleSubmit(e, onPasswordResetEmail);
+    _setIsLoading(false);
+  };
 
   useEffect(() => {
     validateFields();
   }, []);
+
+  const _title = passwordResetEmailFailed
+    ? 'Something went wrong. Please contact us at support@gospecless.com'
+    : 'Reset Your Password'
+    ;
 
   const fields: IFormField[] = [
     {
@@ -54,16 +70,9 @@ const PasswordResetEmail: React.FunctionComponent<IPasswordResetEmailProps> = (p
     },
   ];
 
-  const _handleSubmit = async (e: FormEvent) => {
-    _setIsLoading(true);
-    await _formHelpers.handleSubmit(e, onPasswordResetEmail);
-    _setIsLoading(false);
-  };
-
-  const _formHelpers = getFormHelpers(form);
   return (
     <Card
-      title='Reset Your Password'
+      title={_title}
     >
       <Form
         className='form-button-container'
@@ -75,7 +84,7 @@ const PasswordResetEmail: React.FunctionComponent<IPasswordResetEmailProps> = (p
           <Button
             type='primary'
             htmlType='submit'
-            disabled={_formHelpers.formHasErrors(getFieldsError()) || _isLoading}
+            disabled={_formHelpers.formHasErrors(getFieldsError()) || _isLoading || passwordResetEmailFailed}
           >
             Reset Password
             </Button>
