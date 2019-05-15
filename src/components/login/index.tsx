@@ -15,14 +15,14 @@ import Input from '../input';
 interface ILoginProps extends FormComponentProps {
   onGoogleLogin: () => void;
   onPasswordLogin: (credentials: ICredential) => void;
-  onForgotPassword: () => void;
+  toggleShowResetPasswordEmail: () => void;
 }
 
 const Login: React.FunctionComponent<ILoginProps> = (props) => {
     const {
       onGoogleLogin,
       onPasswordLogin,
-      onForgotPassword,
+      toggleShowResetPasswordEmail,
       form,
       form: {
         getFieldsError,
@@ -114,7 +114,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
             <Checkbox defaultChecked={true}/>
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='button' onClick={onForgotPassword}>Forgot Password</Button>
+            <Button type='primary' htmlType='button' onClick={toggleShowResetPasswordEmail}>Forgot Password</Button>
           </Form.Item>
         </Form>
       </Card>

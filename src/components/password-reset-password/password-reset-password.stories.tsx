@@ -3,14 +3,13 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 
 import StorybookUI from '../../utils/storybook-ui';
-import Login from './';
+import PasswordResetPassword from './';
 
-storiesOf('Login Form', module)
+storiesOf('PasswordResetPassword Form', module)
   .addDecorator((story) => <StorybookUI>{story()}</StorybookUI>)
   .add('Base', () => (
-    <Login
-      onGoogleLogin={action('onGoogleLogin')}
-      onPasswordLogin={action('onPasswordLogin')}
-      toggleShowResetPasswordEmail={action('toggleShowResetPasswordEmail')}
+    <PasswordResetPassword
+      onPasswordResetPassword={action('onPasswordResetPassword')}
+      passwordResetToken='token'
     />
   ));
