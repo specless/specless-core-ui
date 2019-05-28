@@ -57,7 +57,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
       component: <Input
         prefix={<Icon type='user' />}
         placeholder='Email'
-        type='string'
+        type='email'
       />,
       config: {
         initialValue: '',
