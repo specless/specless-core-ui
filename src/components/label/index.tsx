@@ -4,9 +4,9 @@ import cn from 'classnames';
 import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../theme';
 
-export interface ILabelProps {}
+export interface ILabelProps extends React.HTMLAttributes<any> {}
 export const Label: React.FunctionComponent<ILabelProps> = (props) => {
-  const { children } = props;
+  const { children, className, ...rest } = props;
   const _context = useContext(ThemeContext);
   const _theme = _context.get;
 
@@ -18,7 +18,7 @@ export const Label: React.FunctionComponent<ILabelProps> = (props) => {
     letter-spacing: ${_theme('label-letter-spacing')};
   `;
   return (
-    <span className={cn('Label')} css={_css}>
+    <span {...rest} className={cn(className, 'Label')} css={_css}>
       {children}
     </span>
   );
